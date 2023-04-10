@@ -1,0 +1,83 @@
+.registro{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+}
+
+.formRegistro {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    background-color: var(--background);
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+  }
+  
+  .title {
+
+    color: var(--purple2);
+  
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .message, .signin {
+    color: rgba(88, 87, 87, 0.822);
+    font-size: 14px;
+  }
+  
+  .signin {
+    text-align: center;
+  }
+  
+  .signin a {
+    color: var(--purple2);
+  }
+  
+  .signin a:hover {
+    text-decoration: underline var(--purple2);
+  }
+  
+  .flex {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+  }
+
+  .inputt {
+    font-size: .9rem;
+    border-radius: 5px;
+    width: 22rem;
+    border: 1px solid whitesmoke;
+    background-color: whitesmoke;
+    padding: 0.7em;
+    transition: .4s ease-in-out;
+  }
+  
+  .inputt:hover {
+    box-shadow: 6px 6px 0px #969696,
+               -3px -3px 10px #ffffff;
+  }
+  
+  .inputt:focus {
+    background: white;
+    box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+  }
+  
+  
+  @keyframes pulse {
+    from {
+      transform: scale(0.9);
+      opacity: 1;
+    }
+  
+    to {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }

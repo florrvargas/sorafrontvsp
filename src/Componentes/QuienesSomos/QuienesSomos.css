@@ -1,0 +1,25 @@
+.containerNosotras{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem;
+    width: 90%;
+    height: auto;
+}
+
+.inicioNos{
+    display: flex;
+    flex-direction: row;
+}
+
+.leftNos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 2rem;
+}
+
+.leftNos h1{
+    font-size: 40px;
+}

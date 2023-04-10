@@ -1,0 +1,43 @@
+.card {
+    width: 250px;
+    height: 300px;
+    background: var(--background);
+    border-radius: 10px;
+    cursor: pointer;
+    background: url('../../assets/Semicirculo.png') no-repeat;
+    background-color: var(--background);
+    background-size: 7rem;
+    background-position: bottom right -3.5rem;
+}
+.card:hover{
+    transform: translate(2px, 2px);
+}
+   
+.shadow {
+    box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),
+                0 0  0 2px rgb(190, 190, 190),
+                0.3em 0.3em 1em rgba(0,0,0,0.3);
+}
+
+.titleCard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--purple1);
+    margin: .5rem;
+}
+
+.infoCard{
+    color: var(--purple1);
+    margin-left: 1rem;
+}
+
+.imageCard {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.imageCard img{
+    border-radius: 20px;
+}

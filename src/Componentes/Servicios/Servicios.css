@@ -1,0 +1,72 @@
+.containerServicios{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem;
+    width: 90%;
+    height: auto;
+}
+
+.servicios{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    width: 70%;
+}
+
+.servicios h2{
+    font-size: 38px;
+}
+
+.introServicios{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6rem;
+}
+.introServicios h1{
+    font-size: 48px;
+}
+
+.introServicios img{
+    border-radius: 20px;
+}
+
+.soraServicios{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4rem;
+}
+
+.leftServ{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 55%;
+}
+
+.leftRuta{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.leftRuta h3{
+    font-size: 24px;
+    color: var(--purple1);
+}
+
+.ruta{
+    display: flex;
+    flex-direction: column;
+}
+
+.rightServ img{
+    border-radius: 20px;
+}
+   
+   

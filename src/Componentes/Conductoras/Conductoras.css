@@ -1,0 +1,59 @@
+.containerConductora{
+    display: flex;
+    flex-direction: column;
+    width: 97%;
+    height: auto;
+    margin:  2rem ;
+}
+
+.introCond{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    height:fit-content;
+    justify-content: space-between;
+    margin-left: 2rem;
+}
+
+.leftCond{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.leftCond h1{
+    font-size: 50px;
+}
+
+.rightCond img{
+    border-radius: 20px;
+    filter:brightness(.8);
+
+}
+
+.requisitosCond{
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    margin-top: 6rem;
+    margin-bottom: 3rem;
+}
+
+.reqCond{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20rem;
+}
+
+.infoReq{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.leftReq{
+    display: flex;
+    flex-direction: column;
+}
+

@@ -1,0 +1,38 @@
+.containerFooter{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    bottom: 0;
+    width: 100%;
+    height: 8rem;
+    
+    font-size: 12px;
+    background: var(--background);
+}
+.containerFooter img{
+    transform: scale(.8);
+}
+
+.contactoFooter,
+.descargaAppFooter,
+.serviciosFooter,
+.ayudaFooter{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.serv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
