@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.0.1",
     "@iconscout/react-unicons": "^2.0.2",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",

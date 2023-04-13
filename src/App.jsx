@@ -10,6 +10,7 @@ import Ayuda from './Componentes/Ayuda/Ayuda';
 import Registro from './Componentes/Registro/Registro';
 import Conductoras from './Componentes/Conductoras/Conductoras';
 import Perfil from './Componentes/Perfil/Perfil';
+import MiCuenta from './Componentes/Perfil/SideBar/MiCuenta/MiCuenta';
 
 function App() {
   return (
@@ -19,13 +20,14 @@ function App() {
         
         <Routes>
           <Route exact path="/" element={<Home/>} />
-          <Route  path="/QuienesSomos" element={<QuienesSomos/>} />
-          <Route  path="/Servicios" element={<Servicios/>} />
-          <Route  path="/Ayuda" element={<Ayuda/>} />
-          <Route  path="/InicioSesion" element={<InicioSesion/>} />
-          <Route  path="/Registro" element={<Registro/>} />
-          <Route  path="/Conductoras" element={<Conductoras/>} />
-          <Route  path="/Perfil" element={<Perfil/>} />
+          <Route  path="/quienes-somos" element={<QuienesSomos/>} />
+          <Route  path="/servicios" element={<Servicios/>} />
+          <Route  path="/ayuda" element={<Ayuda/>} />
+          <Route  path="/inicio-sesion" element={<InicioSesion/>} />
+          <Route  path="/registro" element={<Registro/>} />
+          <Route  path="/conductoras" element={<Conductoras/>} />
+          <Route  path="/perfil" element={<Perfil/>} />
+          <Route  path='/perfil/mi-cuenta' element={<MiCuenta/>} />
         </Routes>
       <Footer />
     </div>

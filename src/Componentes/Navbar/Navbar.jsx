@@ -1,8 +1,33 @@
 import React from 'react';
 import './Navbar.css';
 import Logo from '../../assets/Logo.png'
+import { useAuth0 } from "@auth0/auth0-react";
+
 
 export default function Navbar() {
+  const { loginWithRedirect, logout, isAuthenticated, getAccessTokenSilently  } = useAuth0();
+
+//   async function saveUserDataToDatabase() {
+//     try {
+//        loginWithRedirect();
+//       const token = await getAccessTokenSilently();
+
+//       const response = await axios.post('https://example.com/api/userdata', {
+//         user: user,
+//         isAuthenticated: isAuthenticated,
+//       }, {
+//         headers: {
+//           Authorization: `Bearer ${token}`,
+//         },
+//       });
+
+//       console.log(response.data);
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   }
+
+
   return (
     <div className='navbar'>
         <div className="n-left">
@@ -30,12 +55,14 @@ export default function Navbar() {
             {/* <li>
                 <a href="">Idioma</a>
             </li> */}
+            { isAuthenticated? 
             <li>
-                <a href="/InicioSesion">Iniciar Sesion</a>
-            </li>
+                <button onClick={() => logout()}>Cerrar sesión</button>
+            </li> :
             <li>
-                <a href="/Registro">Registrarse</a>
+                <button onClick={() => loginWithRedirect()}>Iniciar sesión</button>
             </li>
+            }
         </ul>
         </div>
 
