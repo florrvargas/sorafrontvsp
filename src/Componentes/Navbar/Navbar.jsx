@@ -35,16 +35,16 @@ export default function Navbar() {
         
         <ul>
             <li>
-                <a href="/QuienesSomos">Quienes Somos</a>
+                <a href="/quienes-somos">Quienes Somos</a>
             </li>
             <li>
-                <a href="/Servicios">Servicios</a>
+                <a href="/servicios">Servicios</a>
             </li>
             <li>
-                <a href="/Conductoras">Conductoras</a>
+                <a href="/conductoras">Conductoras</a>
             </li>
             <li>
-                <a href="/Ayuda">Ayuda</a>
+                <a href="/ayuda">Ayuda</a>
             </li>
         </ul>
         
@@ -60,7 +60,7 @@ export default function Navbar() {
                 <button onClick={() => logout()}>Cerrar sesión</button>
             </li> :
             <li>
-                <button onClick={() => loginWithRedirect()}>Iniciar sesión</button>
+                <button onClick={() => loginWithRedirect()}>Ingresar</button>
             </li>
             }
         </ul>
