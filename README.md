@@ -8,12 +8,12 @@ Para levantar el proyecto:
 
 Carpeta API
 
-1 - Crear una DB con el nombre 'sora'
-2 - Crear un archivo .env en la carpeta api
-    DB_USER=postgres user
-    DB_PASSWORD=password postgress
-    DB_HOST=localhost   
-3 - npm install
+1 - Crear una DB con el nombre 'sora'  <br/>
+2 - Crear un archivo .env en la carpeta api  <br/>
+    DB_USER=postgres user  <br/>
+    DB_PASSWORD=password postgress  <br/>
+    DB_HOST=localhost    <br/>
+3 - npm install <br/>
 4 - npm start
 
 
