@@ -155,7 +155,7 @@ button {
   font-weight: 500;
   font-family: inherit;
   cursor: pointer;
-  background-color: var(--purple2);
+  background: linear-gradient(var(--purple2), var(--pink1), var(--pink3));
   color: #ffffff;
   transition: .2s ease-in-out;
   width: max-content;

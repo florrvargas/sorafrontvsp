@@ -1,0 +1,12 @@
+.containerMetodosPagos{
+    height: 100vh;
+}
+
+.rightPagos{
+    margin-left: 200px;
+}
+
+.rightPagos h1{
+    margin:20%;
+    position: fixed;
+}

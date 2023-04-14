@@ -55,14 +55,11 @@ export default function Navbar() {
             {/* <li>
                 <a href="">Idioma</a>
             </li> */}
-            { isAuthenticated? 
-            <li>
-                <button onClick={() => logout()}>Cerrar sesión</button>
-            </li> :
+         
             <li>
                 <button onClick={() => loginWithRedirect()}>Ingresar</button>
             </li>
-            }
+            
         </ul>
         </div>
 

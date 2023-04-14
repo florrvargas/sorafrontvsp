@@ -62,7 +62,7 @@
     border-radius: 10px;
     border: none;
     width: 100%;
-    background: var(--purple2);
+    background: linear-gradient(#8C4AFF, #EE9CDA);
     color: #ffffff;
     transition: .4s ease-in-out;
     box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 1px;

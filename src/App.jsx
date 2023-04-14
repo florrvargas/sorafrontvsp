@@ -11,6 +11,8 @@ import Registro from './Componentes/Registro/Registro';
 import Conductoras from './Componentes/Conductoras/Conductoras';
 import Perfil from './Componentes/Perfil/Perfil';
 import MiCuenta from './Componentes/Perfil/SideBar/MiCuenta/MiCuenta';
+import Viajes from './Componentes/Perfil/SideBar/Viajes/Viajes';
+import MetodosPagos from './Componentes/Perfil/SideBar/MetodosPagos/MetodosPagos';
 
 function App() {
   return (
@@ -26,8 +28,9 @@ function App() {
           <Route  path="/inicio-sesion" element={<InicioSesion/>} />
           <Route  path="/registro" element={<Registro/>} />
           <Route  path="/conductoras" element={<Conductoras/>} />
-          <Route  path="/perfil" element={<Perfil/>} />
+          <Route  path='/perfil/viajes' element={<Viajes/>} />
           <Route  path='/perfil/mi-cuenta' element={<MiCuenta/>} />
+          <Route  path='/perfil/metodos_de_pagos' element={<MetodosPagos/>} />
         </Routes>
       <Footer />
     </div>

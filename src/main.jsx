@@ -13,7 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       domain='dev-gycxcebwgjyhaube.us.auth0.com'
       clientId='qBy6h2IoEMMJGBRJSy76IwZLMwh1nwNq'
       authorizationParams={{
-        redirect_uri: 'http://localhost:5173/perfil'
+        redirect_uri: 'http://localhost:5173/perfil/viajes'
       }}
     >
       <App />

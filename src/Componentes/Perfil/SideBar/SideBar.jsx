@@ -1,9 +1,14 @@
 import React from 'react';
 import './SideBar.css';
 import perfil from '../../../assets/perfil.png'
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 export default function SideBar() {
+
+  const {  logout, isAuthenticated } = useAuth0();
+
+
     return (
         <div className="sideBar">
  
@@ -25,23 +30,23 @@ export default function SideBar() {
             <div className="side-nav">
             <ul >
                 <li className="side">
-                    <a href="/Perfil/viajes">
+                    <a href="/perfil/viajes">
                         <span>Viajes</span>
                     </a>
                 </li>
                 <li className="side">
-                    <a href='/Perfil/pagos'>
+                    <a href='/perfil/metodos_de_pagos'>
                         <span>  Métodos de pago</span>
                     </a>
                 </li>
                 <li className="side">
-                    <a href="/Perfil/mi-cuenta">
+                    <a href="/perfil/mi-cuenta">
                         <span>Mi cuenta</span>
                     </a>
                 </li>
                 <li className="side">
                     <a href="/">
-                        <span>Cerrar sesión</span>
+                        <span onClick={() => logout()}>Cerrar sesión</span>
                     </a>
                 </li>
                 {/* <li className="side-nav_refug">

@@ -1,0 +1,44 @@
+.containerViajes{
+    width: 100%;
+    height: 70vh;
+}
+
+.map{
+    margin-left: 200px;
+    border: 1px solid black;
+    position: fixed;
+    width: 85%;
+    height: 90%;
+}
+
+.mapContainer{
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.rightViajes{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: fit-content;
+    top: 3.5rem;
+    margin: 1rem .5rem;
+    position: absolute;
+    z-index: 1;
+}
+
+.rightViajes.form{
+    padding: 2rem 3rem;
+
+}
+
+.rightViajes .sigin-btn{
+    padding: .5rem;
+    font-size: 15px;
+}
+.rightViajes p{
+    font-size: 11px;
+    margin-top: -1.5rem;
+    margin-left: 1rem;
+}
