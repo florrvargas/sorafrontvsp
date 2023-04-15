@@ -34,9 +34,9 @@
 
   .input {
     font-size: .9rem;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid whitesmoke;
-    background-color: whitesmoke;
+    background-color: rgb(231, 231, 231);
     outline: none;
     padding: 0.7em;
     transition: .4s ease-in-out;
