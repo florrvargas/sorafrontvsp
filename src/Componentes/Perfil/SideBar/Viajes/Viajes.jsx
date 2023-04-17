@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import './Viajes.css'
 import SideBar from '../SideBar';
-import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
-import { useEffect } from 'react';
-
-
+import { GoogleMap, useLoadScript, Marker, DirectionsRenderer, DirectionsService } from '@react-google-maps/api';
+import Places from './Places';
+import Distancia from './Distancia';
 
 export default function Viajes() {
-
+  
+  const [ libraries ] = useState(['places']);
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: 'AIzaSyA_L3GuLKlfEebK6qSzJRRhs8g9vf3k7rI'
+    googleMapsApiKey: 'AIzaSyA_L3GuLKlfEebK6qSzJRRhs8g9vf3k7rI',
+    libraries,
   })
 
   const [latitud, setLatitud] = useState('');
@@ -17,6 +18,10 @@ export default function Viajes() {
   const [timestamp, setTimestamp] = useState('');
   const [done, setDone] = useState(false);
   const [costo, setCosto] =useState('');
+  const [ origen, setOrigen] = useState('');
+  const [ destino, setDestino] = useState('');
+  const [directions, setDirections] = useState()
+  console.log(directions)
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position)=> {
@@ -26,16 +31,39 @@ export default function Viajes() {
     })
   })
   
+  const mapRef = useRef()
   const center = {lat:latitud, lng: longitud}
-  const km = 2;
-  const tiempoAprox = 20;
+  const options = useMemo(() => ({
+    disableDefaultUI: true,
+    clickableIcons: false
+  }), []);
+  const onLoad = useCallback((map) => (mapRef.current = map))
+
+  const fetchDirections = (destino) => {
+    if (!origen) return;
+
+    const service = new google.maps.DirectionsService();
+    service.route(
+      {
+        origin: origen,
+        destination: destino,
+        travelMode: google.maps.TravelMode.DRIVING,
+      },
+      (result, status) => {
+        if (status === "OK" && result) {
+          setDirections(result);
+        }
+      }
+    );
+  };
+  
+  
   
   function result(){
-    const tarifaInicial = 100;
-    const costo = tarifaInicial * km;
-    setCosto(costo);
+    fetchDirections(destino)
     setDone(true);
   } 
+
   
   if(!isLoaded) return <div>Loading...</div>
 
@@ -47,7 +75,10 @@ export default function Viajes() {
         zoom={10}
         center={center}
         mapContainerClassName='mapContainer'
+        options={options}
+        onLoad={onLoad}
       >
+        {directions && <DirectionsRenderer directions={directions}/>}
         <Marker
           position={center}
         />
@@ -55,29 +86,25 @@ export default function Viajes() {
     
     <div className="rightViajes form">
       <h2>Calcule su viaje</h2>
-      <input placeholder="Origen" class="input" type="text"/>
+      <Places
+        placeholder={'Origen'} 
+        setOrigen={(position) => {setOrigen(position);
+      }} />
       <p>Ej: direccion 1</p>
-      <input placeholder="Destino" class="input" type="text"/>
+      <Places 
+        placeholder={'Destino'}
+        setDestino={(position) => {setDestino(position);
+          }}
+         />
       <p>Ej: direccion 2</p>
       <button class="sigin-btn" onClick={result}>Calcular</button>
-      { done ? 
-        <div className="result">
-          <p>TIEMPO APROXIMADO: {tiempoAprox} min</p>
-          <div className="costo">
-            <h2>COSTO: </h2>
-            <h2 id='costo'>$ {costo}</h2>
-         </div> 
-        </div> : null
+      { done && directions ? <Distancia viaje={directions.routes[0].legs[0]} setCosto={setCosto}/>
+         : null
       }
-
-    
- 
     </div>
     </div>
-    
     </div>
   )
-
-
-
 }
+
+

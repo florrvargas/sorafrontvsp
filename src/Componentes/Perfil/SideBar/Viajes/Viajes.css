@@ -1,13 +1,12 @@
 .containerViajes{
     width: 100%;
-    height: 70vh;
+    height: 68vh;
 }
 
 .map{
     margin-left: 200px;
-    border: 1px solid black;
     position: fixed;
-    width: 85%;
+    width:100%;
     height: 90%;
 }
 
@@ -63,4 +62,10 @@
     border: 1px solid whitesmoke;
     background:rgb(231, 231, 231);
     padding: 0 1rem;
+}
+
+#li{
+    margin-left: -2rem;
+    color: var(--purple2);
+    cursor: pointer;
 }
