@@ -4,6 +4,7 @@ import SideBar from '../SideBar';
 import { GoogleMap, useLoadScript, Marker, DirectionsRenderer, DirectionsService } from '@react-google-maps/api';
 import Places from './Places';
 import Distancia from './Distancia';
+import Loading from '../../../Loading/Loading';
 
 export default function Viajes() {
   
@@ -65,7 +66,9 @@ export default function Viajes() {
   } 
 
   
-  if(!isLoaded) return <div>Loading...</div>
+  if(!isLoaded) return <div className="containerViajes">
+  <SideBar /><Loading />
+  </div>
 
   return (
     <div className="containerViajes">
