@@ -18,12 +18,12 @@ router.post('/registro', async (req, res) => {
 
 		///// notificación por mail - usuario registrado
 
-		const asunto = 'Bienvenid@ a Sora';
+		// const asunto = 'Bienvenid@ a Sora';
 
-		const texto = `<p>Hola ${nombre}!<br><br>Estamos muy felices de recibirte en Sora!<br><br>A partir de ahora vas a poder usar nuestro servicio y viajar feliz y segura!<br><br>
-						<br><br>Nos vemos!</p>`;
+		// const texto = `<p>Hola ${nombre}!<br><br>Estamos muy felices de recibirte en Sora!<br><br>A partir de ahora vas a poder usar nuestro servicio y viajar feliz y segura!<br><br>
+		// 				<br><br>Nos vemos!</p>`;
 
-		mailUsuarioCreado(correo, asunto, texto);
+		// mailUsuarioCreado(correo, asunto, texto);
 
 		/////////
 
@@ -36,6 +36,7 @@ router.post('/registro', async (req, res) => {
 router.post('/login', async (req, res) => {
 	const {correo, contraseña} = req.body;
 console.log(correo, contraseña)
+
 	try {
 		const usuario = await User.findOne({
 			where: {
@@ -47,9 +48,9 @@ console.log(correo, contraseña)
 			res.status(404).send({error: 'Usuario no encontrado'});
 		}
 		const checkContraseña = await compare(contraseña, usuario.contraseña);
-		const tokenSesion = await tokenSign(usuario);
+		// const tokenSesion = await tokenSign(usuario);
 		if (checkContraseña) {
-			res.status(200).send({usuario, tokenSesion});
+			res.status(200).send({usuario, res:"login exitoso"});
 		}
 		if (!checkContraseña) {
 			res.status(400).send({error: 'contraseña incorrecta'});
@@ -59,129 +60,19 @@ console.log(correo, contraseña)
 	}
 });
 
-
-//// USUARIO FAVORITOS PRODUCTO ////
-
-// trae todos los productos de la lista de favoritos del usuario por id
-
-router.get('/favoritos-producto', async (req, res) => {
-	const {userId} = req.query;
+	router.get("/users", async (req, res) => {
 	try {
-		const usuario = await User.findOne({
-			where: {
-				id: userId,
-			},
-		});
-		const favoritosUsuario = usuario.favoritoProducto;
-		if (!usuario) {
-			return res.status(400).send('No existe usuario');
-		} else if (!favoritosUsuario) {
-			return res.status(400).send('Este usuario no tiene favoritos');
+		const users = await User.findAll();
+		if (!users.length) {
+		res.status(400).send({ error: "No se encontraron usuarios" });
 		} else {
-			return res.status(200).json(favoritosUsuario);
+		res.status(200).send(users);
 		}
 	} catch (error) {
-		console.log(error);
+		res.status(400).send({ error: error.message });
 	}
-});
-
-// agrega productos a la lista de favoritos del usuario por id
-
-router.post('/favoritos-producto', async (req, res) => {
-	const {userId, productId} = req.body;
-	try {
-		const usuario = await User.findByPk(userId);
-		const producto = await Product.findByPk(productId);
-		if (!producto) {
-			res.status(400).send('El producto no existe');
-		} else if (!usuario.favoritoProducto.includes(productId)) {
-			await usuario.update({
-				favoritoProducto: [...usuario.favoritoProducto, productId],
-			});
-			res.status(200).send('Agregado con exito!');
-		} else {
-			res.status(400).send('El producto ya esta agregado a favoritos');
-		}
-	} catch (error) {
-		res.status(404).send(error);
-	}
-});
-
-// elimina productos de la lista de favoritos del usuario por id
-
-router.delete("/favoritos-producto", async function(req, res) {
-    const {userId, productId} = req.body;
-	try {
-		const user = await User.findByPk(userId);
-        await user.update({
-			favoritoProducto: user.favoritoProducto.filter(e => e !== productId)
-		});
-        res.status(200).send('El producto fue eliminado de favoritos')
-    } catch (error) { 
-        res.status(404).send(error);
-    }
-})
-
-//// FIN USUARIO FAVORITOS PRODUCTO ////
+	});
 
 
-
-//// USUARIO FAVORITOS MASCOTA ////
-
-router.get('/favoritos-mascota', async (req, res) => {
-	const {userId} = req.query;
-	try {
-		const usuario = await User.findOne({
-			where: {
-				id: userId,
-			},
-		});
-		const favoritosMascotaUsuario = usuario.favoritoMascota;
-		if (!usuario) {
-			return res.status(400).send('No existe usuario');
-		} else if (!favoritosMascotaUsuario) {
-			return res.status(400).send('Este usuario no tiene mascotas en favoritos');
-		} else {
-			return res.status(200).json(favoritosMascotaUsuario);
-		}
-	} catch (error) {
-		console.log(error);
-	}
-});
-
-router.post('/favoritos-mascota', async (req, res) => {
-	const {userId, petId} = req.body;
-	try {
-		const usuario = await User.findByPk(userId);
-		const mascota = await Pet.findByPk(petId);
-		if (!mascota) {
-			res.status(400).send('La mascota no existe');
-		} else if (!usuario.favoritoMascota.includes(petId)) {
-			await usuario.update({
-				favoritoMascota: [...usuario.favoritoMascota, petId],
-			});
-			res.status(200).send('Agregado con exito!');
-		} else {
-			res.status(400).send('La mascota ya esta agregada a favoritos');
-		}
-	} catch (error) {
-		res.status(404).send(error);
-	}
-});
-
-router.delete("/favoritos-mascota", async function(req, res) {
-    const {userId, petId} = req.body;
-	try {
-		const user = await User.findByPk(userId);
-        await user.update({
-			favoritoMascota: user.favoritoMascota.filter(e => e !== petId)
-		});
-        res.status(200).send('La mascota fue eliminada de favoritos')
-    } catch (error) { 
-        res.status(404).send(error);
-    }
-})
-
-//// FIN USUARIO FAVORITOS MASCOTA ////
 
 module.exports = router;

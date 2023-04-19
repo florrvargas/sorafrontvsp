@@ -8,19 +8,25 @@ module.exports = (sequelize) => {
     "viaje",
     {
       id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
+			type: DataTypes.UUID,
+			defaultValue: DataTypes.UUIDV4,
+			allowNull: false,
+			primaryKey: true,
+		},
+      userId: {
+        type: DataTypes.UUID,
+        allowNull:false
       },
-      userID: {
-        type: DataTypes.TEXT,
+      driverId: {
+        type: DataTypes.UUID,
+        allowNull:false
       },
       estado: {
         type: DataTypes.ENUM(
           "realizado",
           "cancelado"
         ),
-        defaultValue: "realizada",
+        defaultValue: "realizado",
         allowNull: false,
         validate: {
           notEmpty: true,

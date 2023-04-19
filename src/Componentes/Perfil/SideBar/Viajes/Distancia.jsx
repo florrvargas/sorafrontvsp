@@ -7,6 +7,8 @@ export default function Distancia({viaje, setCosto}) {
     const costo = redondeo.format((viaje.distance.value /1000) *100)
     setCosto(costo)
 
+    console.log(viaje)
+
   return (
     <div className="result">
           <p>TIEMPO APROXIMADO: {viaje.duration.text} </p>

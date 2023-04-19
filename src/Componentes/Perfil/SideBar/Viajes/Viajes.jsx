@@ -30,7 +30,7 @@ export default function Viajes() {
       setLongitud(position.coords.longitude);
       setTimestamp(position.timestamp)
     })
-  })
+  },[])
   
   const mapRef = useRef()
   const center = {lat:latitud, lng: longitud}

@@ -5,7 +5,7 @@
    
 //     try {
 //         await transporter.sendMail({
-//             from: '"Find me a home" <findmeahome2022@gmail.com>',
+//             from: '"Sora" <findmeahome2022@gmail.com>',
 //             to: `${correo}`,
 //             subject: `${asunto}`,
 //             html: `${texto}`
