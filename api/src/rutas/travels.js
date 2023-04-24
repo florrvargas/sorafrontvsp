@@ -54,4 +54,9 @@ router.get("/viajes", async (req, res) => {
 	}
 	});
 
+
+router.post('/pagar/:id', async (req, res) => {
+  
+})
+
     module.exports = router;

@@ -6,7 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export default function SideBar() {
 
-  const {  logout, isAuthenticated } = useAuth0();
+  const { user, isLoading,logout, isAuthenticated } = useAuth0();
 
 
     return (
@@ -24,7 +24,7 @@ export default function SideBar() {
 
             <div className="user-profile">
                 <img src={perfil} alt="admin-picture" width='100px'/>
-                <h3>Nombre</h3>                
+                {isLoading? <h3>Cargando...</h3> : <h3>{user.given_name}</h3> }            
             </div>
 
             <div className="side-nav">

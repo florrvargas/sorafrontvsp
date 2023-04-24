@@ -7,7 +7,7 @@ export default function Distancia({viaje, setCosto}) {
     const costo = redondeo.format((viaje.distance.value /1000) *100)
     setCosto(costo)
 
-    console.log(viaje)
+
 
   return (
     <div className="result">
@@ -17,6 +17,8 @@ export default function Distancia({viaje, setCosto}) {
             <h2>COSTO: </h2>
             <h2 id='costo'>$ {costo}</h2>
          </div> 
+         <a href="/perfil/viajes/pago">
+         <button className='sigin-btn'>Pedir viaje</button></a>
         </div>
   );
   }

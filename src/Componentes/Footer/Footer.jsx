@@ -21,7 +21,7 @@ export default function Footer() {
         </div>
         <div className="info">
         <Whatsapp size='1.5rem' color='#20BA2F'/>
-        <a href="https://wa.me/56987202357?text=Hola%20Sora!">
+        <a href="https://wa.me/56983478039?text=Hola%20Sora!">
         <p>Whatsapp</p>
         </a>
         </div>

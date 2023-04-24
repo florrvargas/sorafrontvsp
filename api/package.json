@@ -19,6 +19,7 @@
         "express": "^4.18.2",
         "ioredis": "^4.27.10",
         "jsonwebtoken": "^8.5.1",
+        "mercadopago": "^1.5.15",
         "morgan": "^1.10.0",
         "mysql2": "^2.3.3",
         "node": "^19.0.1",

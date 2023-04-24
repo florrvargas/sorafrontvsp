@@ -22,6 +22,9 @@ export default function Viajes() {
   const [ origen, setOrigen] = useState('');
   const [ destino, setDestino] = useState('');
   const [directions, setDirections] = useState()
+  const [disableButton, setDisableButton] = useState();
+
+
   console.log(directions)
 
   useEffect(() => {
@@ -63,6 +66,7 @@ export default function Viajes() {
   function result(){
     fetchDirections(destino)
     setDone(true);
+    setDisableButton('eliminarBtn');
   } 
 
   
@@ -81,10 +85,10 @@ export default function Viajes() {
         options={options}
         onLoad={onLoad}
       >
-        {directions && <DirectionsRenderer directions={directions}/>}
         <Marker
           position={center}
         />
+        {directions && <DirectionsRenderer directions={directions}/>}
       </GoogleMap>
     
     <div className="rightViajes form">
@@ -100,7 +104,7 @@ export default function Viajes() {
           }}
          />
       <p>Ej: direccion 2</p>
-      <button class="sigin-btn" onClick={result}>Calcular</button>
+      <button className={`sigin-btn ${disableButton}`} onClick={result} >Calcular</button>
       { done && directions ? <Distancia viaje={directions.routes[0].legs[0]} setCosto={setCosto}/>
          : null
       }
