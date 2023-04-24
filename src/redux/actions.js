@@ -2,15 +2,42 @@ import axios from "axios";
 
   export function registroUsuario(payload) {
     return async function () {
-      let json = await axios.post(`/users/registro`, payload);
-      return json;s
+      try
+        { 
+        let json = await axios.post(`/usuarios/registro`, payload);
+
+        let userCreated = await {
+          correo: json.data.user.correo,
+          contraseña: payload.contraseña
+        }
+
+        let LSlogin = userCreated.correo
+
+        let logIn = await axios.post(`/usuarios/login`, userCreated);
+
+
+        localStorage.setItem("login", JSON.stringify(LSlogin));
+
+        return logIn
+
+
+
+      }catch(error){
+        console.log(error)
+      }
+
     };
   }
 
   export function loginUsuario(payload) {
     return async function () {
-      let json = await axios.post(`/users/login`, payload);
-      return json;s
+      let json = await axios.post(`/usuarios/login`, payload);
+
+      console.log(json)
+
+      localStorage.setItem("login", "true")
+
+      return json;
     };
   }
 
@@ -19,7 +46,7 @@ import axios from "axios";
     return async function (dispatch) {
 
       try {
-        let json = await axios.get(`/users`);
+        let json = await axios.get(`/usuarios`);
         return dispatch({
           type: "TRAER_USUARIOS",
           payload: json.data,
@@ -30,12 +57,22 @@ import axios from "axios";
     };
   }
 
+  export function traerUsuariosPorCorreo(correo) {
+    return async (dispatch) => {
+      let usuariosCorreo = await axios.get(`/usuarios/users/${correo}`);
+      dispatch({
+        type: "TRAER_USUARIOS_POR_CORREO",
+        payload: usuariosCorreo.data,
+      });
+    };
+  };
+
   export function registroConductora(payload) {
     return async function () {
       let json = await axios.post(`/conductoras/registro`, payload);
       return json;
     };
-  }s
+  }
 
   export function loginConductora(payload) {
     return async function () {

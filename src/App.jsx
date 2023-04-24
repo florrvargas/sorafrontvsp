@@ -14,10 +14,14 @@ import MiCuenta from './Componentes/Perfil/SideBar/MiCuenta/MiCuenta';
 import Viajes from './Componentes/Perfil/SideBar/Viajes/Viajes';
 import MetodosPagos from './Componentes/Perfil/SideBar/MetodosPagos/MetodosPagos';
 import Pago from './Componentes/Perfil/SideBar/Pago/Pago';
+import { Provider } from 'react-redux';
+import store from './redux/store.js'
 
 function App() {
   return (
     <>
+      <Provider store={store}>
+        <Navbar></Navbar>
       <div className="app">
         
         <Routes>
@@ -34,6 +38,7 @@ function App() {
           <Route  path='/perfil/metodos_de_pagos' element={<MetodosPagos/>} />
         </Routes>
     </div>
+    </Provider>
     </>
   )
 }

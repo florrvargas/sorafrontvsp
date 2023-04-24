@@ -22,10 +22,7 @@ export default function Viajes() {
   const [ origen, setOrigen] = useState('');
   const [ destino, setDestino] = useState('');
   const [directions, setDirections] = useState()
-  const [disableButton, setDisableButton] = useState();
 
-
-  console.log(directions)
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position)=> {
@@ -42,6 +39,10 @@ export default function Viajes() {
     clickableIcons: false
   }), []);
   const onLoad = useCallback((map) => (mapRef.current = map))
+
+  function handleCreateTravel() {
+    
+  }
 
   const fetchDirections = (destino) => {
     if (!origen) return;
@@ -108,6 +109,8 @@ export default function Viajes() {
       { done && directions ? <Distancia viaje={directions.routes[0].legs[0]} setCosto={setCosto}/>
          : null
       }
+      <button class="sigin-btn" onClick={(e)=>handleCreateTravel(e)}>Pedir Viaje</button>
+      
     </div>
     </div>
     </div>

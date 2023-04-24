@@ -1,31 +1,19 @@
 import React from 'react';
 import './Navbar.css';
 import Logo from '../../assets/Logo.png'
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
+// import { registroUsuario, traerUsuariosPorCorreo } from '../../redux/actions';
+// import { redirect } from 'react-router-dom';
+// import { useEffect } from 'react';
+// import axios from 'axios';
+
+
+
 
 
 export default function Navbar() {
-  const { loginWithRedirect, logout, isAuthenticated, getAccessTokenSilently  } = useAuth0();
+//   const { loginWithRedirect, logout, isAuthenticated, getAccessTokenSilently, user  } = useAuth0();
 
-//   async function saveUserDataToDatabase() {
-//     try {
-//        loginWithRedirect();
-//       const token = await getAccessTokenSilently();
-
-//       const response = await axios.post('https://example.com/api/userdata', {
-//         user: user,
-//         isAuthenticated: isAuthenticated,
-//       }, {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//         },
-//       });
-
-//       console.log(response.data);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   }
 
 
   return (
@@ -56,9 +44,9 @@ export default function Navbar() {
                 <a href="">Idioma</a>
             </li> */}
          
-            <li>
-                <button onClick={() => loginWithRedirect()}>Ingresar</button>
-            </li>
+            <a href="/inicio-sesion">
+                <button >Ingresar</button>
+            </a>
             
         </ul>
         </div>
