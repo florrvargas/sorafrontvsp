@@ -1,5 +1,4 @@
 import React from 'react'
-import MPButton from './MercadoPago';
 import { useDispatch } from 'react-redux';
 import { crearViaje } from '../../../../redux/actions';
 
@@ -46,7 +45,6 @@ export default function Distancia({viaje}) {
           <input type="hidden" name='costo' value={costo} />
          <button className='sigin-btn' onClick={(e)=>handleCreateTravel(e)}>Pedir viaje</button>
          </form>
-         <MPButton viaje= {viaje} />
 
         </div>
   );

@@ -12,22 +12,21 @@ export default function SideBar() {
 //   const { user, isLoading,logout, isAuthenticated } = useAuth0()
 
 
-  const { isLoading } = useAuth0()
+//   const { isLoading } = useAuth0()
   const navigate = useNavigate()
-  const perfil =  JSON.parse(localStorage.getItem("login"))
+  let perfil =  JSON.parse(localStorage.getItem("login"))
 
- 
-  
     useEffect(() => {
-    
-        perfil
-
+        perfil =  JSON.parse(localStorage.getItem("login"))
     }, [])
     
 
     function logout() {
         localStorage.removeItem("login")
         navigate("/")
+    }
+    function refresh() {
+        navigate("/perfil/viajes")
     }
 
     return (
@@ -44,9 +43,13 @@ export default function SideBar() {
             </div> */}
 
             <div className="user-profile">
-                {isLoading? <h3>Cargando...</h3> :<img src={perfil.foto} alt="admin-picture" width='100px'/>}
+                {!perfil? <h3>cargando...</h3>:
                 
-                {isLoading? <h3>Cargando...</h3> : <h3>{perfil.given_name}</h3> }            
+                <div>
+                    <img src={perfil.foto} alt="admin-picture" width='100px'/>
+                    <h3>{perfil.nombre}</h3>  
+                </div>}
+                         
             </div>
 
             <div className="side-nav">

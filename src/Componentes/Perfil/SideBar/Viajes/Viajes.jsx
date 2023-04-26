@@ -23,10 +23,6 @@ export default function Viajes() {
   const [ destino, setDestino] = useState('');
   const [directions, setDirections] = useState()
   const [disableButton, setDisableButton] = useState()
-<<<<<<< HEAD
-
-=======
->>>>>>> 36de7a540e27b5eb576cff3e27f2da42b2e365ed
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position)=> {
@@ -44,10 +40,6 @@ export default function Viajes() {
   }), []);
   const onLoad = useCallback((map) => (mapRef.current = map))
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 36de7a540e27b5eb576cff3e27f2da42b2e365ed
 
   const fetchDirections = (destino) => {
     if (!origen) return;
@@ -114,11 +106,6 @@ export default function Viajes() {
       { done && directions ? <Distancia viaje={directions.routes[0].legs[0]} />
          : null
       }
-<<<<<<< HEAD
-      
-=======
-
->>>>>>> 36de7a540e27b5eb576cff3e27f2da42b2e365ed
     </div>
     </div>
     </div>

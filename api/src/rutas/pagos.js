@@ -1,5 +1,7 @@
 const {Router} = require('express');
 const router = Router();
+require('dotenv').config();
+
 
 // SDK de Mercado Pago
 const mercadopago = require("mercadopago");
@@ -7,7 +9,7 @@ const mercadopago = require("mercadopago");
 const { MP_ACCESS_TOKEN} = process.env
 console.log(MP_ACCESS_TOKEN)
 
-
+const api = MP_ACCESS_TOKEN
 mercadopago.configure({
   access_token: "APP_USR-2279641353678271-042500-9ea457cb9c2fd06842fc0c3833bb91ab-1360165492" ,
 });
