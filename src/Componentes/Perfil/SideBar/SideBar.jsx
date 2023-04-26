@@ -1,13 +1,34 @@
 import React from 'react';
 import './SideBar.css';
-import perfil from '../../../assets/perfil.png'
+import { useNavigate } from 'react-router-dom';
+
+// import perfil from '../../../assets/perfil.png'
 import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect } from 'react';
 
 
 export default function SideBar() {
 
-  const { user, isLoading,logout, isAuthenticated } = useAuth0();
+//   const { user, isLoading,logout, isAuthenticated } = useAuth0()
 
+
+  const { isLoading } = useAuth0()
+  const navigate = useNavigate()
+  const perfil =  JSON.parse(localStorage.getItem("login"))
+
+ 
+  
+    useEffect(() => {
+    
+        perfil
+
+    }, [])
+    
+
+    function logout() {
+        localStorage.removeItem("login")
+        navigate("/")
+    }
 
     return (
         <div className="sideBar">
@@ -23,8 +44,9 @@ export default function SideBar() {
             </div> */}
 
             <div className="user-profile">
-                <img src={perfil} alt="admin-picture" width='100px'/>
-                {isLoading? <h3>Cargando...</h3> : <h3>{user.given_name}</h3> }            
+                {isLoading? <h3>Cargando...</h3> :<img src={perfil.foto} alt="admin-picture" width='100px'/>}
+                
+                {isLoading? <h3>Cargando...</h3> : <h3>{perfil.given_name}</h3> }            
             </div>
 
             <div className="side-nav">
@@ -61,4 +83,5 @@ export default function SideBar() {
     </div>
 
 )
-}
+
+            }

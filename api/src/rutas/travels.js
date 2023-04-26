@@ -4,40 +4,33 @@ const {Viaje, User, Driver} = require('../db');
 
 
 router.post('/viaje', async (req, res) => {
-	const {driverId, userId, estado, montoTotal, distancia, fecha} = req.body;
+  
+  //agreagr fecha
+
+	const {userCorreo, estado, montoTotal, distancia, fecha} = req.body;
 
     const userExist = await User.findOne({
         where: {
-          id: userId,
+          correo: userCorreo,
         },
-      });
-
-    const driverExist = await Driver.findOne({
-        where: {
-          id: driverId,
-        },
-      });
-
-      if(userExist&&driverExist){
+      });   
 
         try {
 		
             const createTravel = await Viaje.create({
-                driverId,
-                userId,
-                estado,
-                montoTotal,
-                distancia,
-                fecha   
+              userCorreo,
+              estado,
+              montoTotal,
+              distancia,
+              fecha,
+              estado: "en espera"   
             });
     
-            res.status(200).send(createTravel);
+            res.status(200).send(createTravel, console.log("viaje creado"));
         } catch (error) {
             res.status(400).send({error: error.message});
         }
-      }else{
-        return alert("usuario o conductor invalido")
-      }
+      
 
 });
 

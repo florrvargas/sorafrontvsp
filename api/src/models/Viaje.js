@@ -13,31 +13,33 @@ module.exports = (sequelize) => {
 			allowNull: false,
 			primaryKey: true,
 		},
-      userId: {
-        type: DataTypes.UUID,
+      userCorreo: {
+        type: DataTypes.STRING,
         allowNull:false
       },
-      driverId: {
-        type: DataTypes.UUID,
-        allowNull:false
+      driverCorreo: {
+        type: DataTypes.STRING,
+        allowNull:true
       },
       estado: {
         type: DataTypes.ENUM(
           "realizado",
-          "cancelado"
+          "cancelado",
+          "en proceso",
+          "en espera"
         ),
         defaultValue: "realizado",
         allowNull: false,
         validate: {
           notEmpty: true,
-          isIn: [["realizado", "cancelado"]],
+          isIn: [["realizado", "cancelado", "en proceso","en espera"]],
         },
       },
       montoTotal: {
         type: DataTypes.FLOAT,
       },
       distancia: {
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
       },
       fecha: {
         type: DataTypes.DATEONLY,
