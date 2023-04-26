@@ -5,7 +5,7 @@ const {encrypt, compare} = require('../helpers/bcrypt');
 const {mailUsuarioCreado} = require('../helpers/mailsService');
 
 router.post('/registro', async (req, res) => {
-	const {nombre, contraseña, correo} = req.body;
+	const {nombre, contraseña, correo, foto} = req.body;
 
 	try {
 		const contraseñaHash = await encrypt(contraseña);
@@ -13,6 +13,7 @@ router.post('/registro', async (req, res) => {
 			nombre,
 			contraseña: contraseñaHash,
 			correo,
+			foto,
 		});
 
 		///// notificación por mail - usuario registrado
@@ -34,7 +35,6 @@ router.post('/registro', async (req, res) => {
 
 router.post('/login', async (req, res) => {
 	const {correo, contraseña} = req.body;
-console.log(correo, contraseña)
 	try {
 		const driver = await Driver.findOne({
 			where: {
@@ -47,7 +47,7 @@ console.log(correo, contraseña)
 		}
 		const checkContraseña = await compare(contraseña, driver.contraseña);
 		if (checkContraseña) {
-			res.status(200).send({driver});
+			res.status(200).send({driver, res:"login exitoso"});
 		}
 		if (!checkContraseña) {
 			res.status(400).send({error: 'contraseña incorrecta'});

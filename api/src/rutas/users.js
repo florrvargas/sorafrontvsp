@@ -6,7 +6,7 @@ const {tokenSign} = require('../helpers/generarToken');
 const {mailUsuarioCreado} = require('../helpers/mailsService');
 
 	router.post('/registro', async (req, res) => {
-		const {nombre, contraseña, correo} = req.body;
+		const {nombre, correo, contraseña, foto} = req.body;
 
 		try {
 			const contraseñaHash = await encrypt(contraseña);
@@ -14,8 +14,9 @@ const {mailUsuarioCreado} = require('../helpers/mailsService');
 				where: { correo },
 				defaults: { 
 				nombre,
-				contraseña: contraseñaHash,
 				correo,
+				contraseña: contraseñaHash,
+				foto,
 				}
 			});
 
@@ -58,7 +59,7 @@ const {mailUsuarioCreado} = require('../helpers/mailsService');
 			const checkContraseña = await compare(contraseña, usuario.contraseña);
 			console.log(checkContraseña)
 			if (checkContraseña) {
-				res.status(200).send({res:"login exitoso"});
+				res.status(200).send({usuario, res:"login exitoso"});
 			}
 			if (!checkContraseña) {
 				res.status(400).send({error: 'contraseña incorrecta'});
