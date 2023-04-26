@@ -28,12 +28,11 @@ export default function Registro() {
     function handleCallbackResponse(response) {
       const user =(jwtDecode(response.credential))
 
-      console.log(user)
-
       const newUser={
         nombre:user.given_name + " " + user.family_name,
         correo:user.email,
-        contraseña:user.azp
+        contraseña:user.azp,
+        foto:user.picture
       }
       
       dispatch(registroUsuario(newUser))

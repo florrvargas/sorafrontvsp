@@ -21,7 +21,6 @@ function App() {
   return (
     <>
       <Provider store={store}>
-        <Navbar></Navbar>
       <div className="app">
         
         <Routes>

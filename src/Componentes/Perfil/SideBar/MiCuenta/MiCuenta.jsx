@@ -6,23 +6,26 @@ import Loading from '../../../Loading/Loading';
 
 export default function MiCuenta(){
 
-    const { user, isAuthenticated, isLoading} = useAuth0();
-    console.log(user)
 
-    if(isLoading){
-        return <div className="containerMiCuenta">
-        <SideBar/><Loading />
-        </div>
-    }
+    const user =  JSON.parse(localStorage.getItem("login"))
+    // // const { user, isAuthenticated, isLoading} = useAuth0();
+    // const {isLoading} = useAuth0();
+    // // console.log(user)
+
+    // if(isLoading){
+    //     return <div className="containerMiCuenta">
+    //     <SideBar/><Loading />
+    //     </div>
+    // }
 
     return(
         <div className="containerMiCuenta">
       <SideBar/>
 
         <div className='misDatos'>
-            <img src={user.picture} alt={user.name} />
-            <h2>{user.name}</h2>
-            <p>Email: {user.email}</p>
+            <img src={user.foto} alt={user.nombre} />
+            <h2>{user.nombre}</h2>
+            <p>Email: {user.correo}</p>
         </div>
     </div>
     )

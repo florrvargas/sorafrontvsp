@@ -11,12 +11,9 @@ import axios from "axios";
           contraseña: payload.contraseña
         }
 
-        let LSlogin = userCreated.correo
-
         let logIn = await axios.post(`/usuarios/login`, userCreated);
 
-
-        localStorage.setItem("login", JSON.stringify(LSlogin));
+        localStorage.setItem("login", JSON.stringify(logIn.data.usuario));
 
         return logIn
 
@@ -33,9 +30,7 @@ import axios from "axios";
     return async function () {
       let json = await axios.post(`/usuarios/login`, payload);
 
-      console.log(json)
-
-      localStorage.setItem("login", "true")
+     localStorage.setItem("login",  JSON.stringify(json.data.usuario)) 
 
       return json;
     };
@@ -98,7 +93,9 @@ import axios from "axios";
 
   export function crearViaje(payload) {
     return async function () {
+      console.log(payload)
       let json = await axios.post(`/viajes/viaje`, payload);
+      
       return json;
     };
   }
