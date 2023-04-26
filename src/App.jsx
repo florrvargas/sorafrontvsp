@@ -13,7 +13,6 @@ import Perfil from './Componentes/Perfil/Perfil';
 import MiCuenta from './Componentes/Perfil/SideBar/MiCuenta/MiCuenta';
 import Viajes from './Componentes/Perfil/SideBar/Viajes/Viajes';
 import MetodosPagos from './Componentes/Perfil/SideBar/MetodosPagos/MetodosPagos';
-import Pago from './Componentes/Perfil/SideBar/Pago/Pago';
 import { Provider } from 'react-redux';
 import store from './redux/store.js'
 
@@ -21,7 +20,6 @@ function App() {
   return (
     <>
       <Provider store={store}>
-        <Navbar></Navbar>
       <div className="app">
         
         <Routes>
@@ -33,7 +31,9 @@ function App() {
           <Route  path="/registro" element={<><Navbar/><Registro/><Footer/></>} />
           <Route  path="/conductoras" element={<><Navbar/><Conductoras/><Footer/></>} />
           <Route  path='/perfil/viajes' element={<Viajes/>} />
-          <Route  path='/perfil/viajes/pago' element={<Pago/>} />
+          <Route  path='/perfil/viajes/success' element='VIAJE PAGADO' />
+          <Route  path='/perfil/viajes/failure' element='ERROR AL PROCESAR EL PAGO' />
+          <Route  path='/perfil/viajes/pending' element='PAGO PENDIENTE' />
           <Route  path='/perfil/mi-cuenta' element={<MiCuenta/>} />
           <Route  path='/perfil/metodos_de_pagos' element={<MetodosPagos/>} />
         </Routes>
