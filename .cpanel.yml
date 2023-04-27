@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home3/soratrav/public_html/
-    - /bin/cp dist/ $DEPLOYPATH
+    - export DEPLOYPATH=/home/soratrav/public_html/
+    - /bin/rsync -av dist/ $DEPLOYPATH
