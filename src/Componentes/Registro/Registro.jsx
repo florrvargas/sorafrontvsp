@@ -12,7 +12,8 @@ export default function Registro() {
     useEffect(() => {
 
       google.accounts.id.initialize({
-        client_id: "62274512155-0s8stg20n5c8lmqsa2seet01vfkr2jo5.apps.googleusercontent.com",
+        client_id: "62274512155-ma0t6k8lom669on9otidttkuh4bhihkq.apps.googleusercontent.com",
+        
         callback : handleCallbackResponse
       });
 
