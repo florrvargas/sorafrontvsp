@@ -2,18 +2,17 @@ import axios from "axios";
 
   export function registroUsuario(payload) {
     return async function () {
+
       try
         { 
         let json = await axios.post(`/usuarios/registro`, payload);
 
-        let userCreated = await {
+        let userCreated = {
           correo: json.data.user.correo,
           contraseña: payload.contraseña
         }
 
         let logIn = await axios.post(`/usuarios/login`, userCreated);
-
-        localStorage.setItem("login", JSON.stringify(logIn.data.usuario));
 
         return logIn
 

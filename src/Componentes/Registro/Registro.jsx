@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './Registro.css'
-// import { useAuth0 } from '@auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 import { useState } from 'react';
 import { loginUsuario, registroUsuario } from '../../redux/actions';
 import { useNavigate } from 'react-router-dom';
@@ -9,38 +9,7 @@ import jwtDecode from 'jwt-decode';
 
 export default function Registro() {
 
-    useEffect(() => {
-
-      google.accounts.id.initialize({
-        client_id: "62274512155-ma0t6k8lom669on9otidttkuh4bhihkq.apps.googleusercontent.com",
-        
-        callback : handleCallbackResponse
-      });
-
-      google.accounts.id.renderButton(
-        document.getElementById("signInButton"),
-        {size:"medium"}
-      );
-
-      google.accounts.id.prompt();
-
-    }, [])
-
-    function handleCallbackResponse(response) {
-      const user =(jwtDecode(response.credential))
-
-      const newUser={
-        nombre:user.given_name + " " + user.family_name,
-        correo:user.email,
-        contraseña:user.azp,
-        foto:user.picture
-      }
-      
-      dispatch(registroUsuario(newUser))
-
-      navigate("/perfil/viajes")
-    
-    }
+    const {loginWithRedirect} = useAuth0()
     
 
     function validate(input) {
@@ -97,31 +66,32 @@ export default function Registro() {
   }
 
 
-    //   const onSuccess = (response) => {
-    //     setUser(response.profileObj);
+      const onSuccess = (response) => {
+        setUser(response.profileObj);
     
-    //     const res = {
-    //       nombre : response.profileObj.name,
-    //       contraseña : response.googleId ,
-    //       correo: response.profileObj.email 
+        const res = {
+          nombre : response.profileObj.name,
+          contraseña : response.googleId ,
+          correo: response.profileObj.email 
             
-    //     }
-    // console.log(response)
-    
-    //     dispatch(registroUsuario(res))
-    //     document.getElementsByClassName("btn").hidden = true;
-    
-    //     alert("Usuario creado")
-    
-    //     navigate("/")
-    
-    
-    //   }
+        }
 
-      // const onFailure = (response) => {
-      //   console.log(response);
-      //   console.log(response.profileObj);
-      // }
+        console.log(response)
+    
+        dispatch(registroUsuario(res))
+        document.getElementsByClassName("btn").hidden = true;
+    
+        alert("Usuario creado")
+    
+        navigate("/")
+    
+    
+      }
+
+      const onFailure = (response) => {
+        console.log(response);
+        console.log(response.profileObj);
+      }
 
       const [errors, setErrors] = useState({});
       const [user, setUser] = useState({});
@@ -159,7 +129,7 @@ export default function Registro() {
         <input required="" type="password" name='confirmarContraseña' onChange={handleChange} value={input.confirmarContraseña} placeholder="Confirmar contraseña" class="inputt"/>
        
     </label>
-    <button class="sigin-btn" onClick={(e) => handleSubmit(e)} >Registrarme</button>
+    <button class="sigin-btn" onClick={loginWithRedirect} >Registrarme</button>
 
     <button class="sigin-btn" id="signInButton"></button>
 

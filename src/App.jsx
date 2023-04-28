@@ -9,7 +9,7 @@ import InicioSesion from './Componentes/InicioSesion/InicioSesion';
 import Ayuda from './Componentes/Ayuda/Ayuda';
 import Registro from './Componentes/Registro/Registro';
 import Conductoras from './Componentes/Conductoras/Conductoras';
-import Perfil from './Componentes/Perfil/Perfil';
+import RedirectPage from './Componentes/Perfil/RedirectPage';
 import MiCuenta from './Componentes/Perfil/SideBar/MiCuenta/MiCuenta';
 import Viajes from './Componentes/Perfil/SideBar/Viajes/Viajes';
 import MetodosPagos from './Componentes/Perfil/SideBar/MetodosPagos/MetodosPagos';
@@ -30,6 +30,7 @@ function App() {
           <Route  path="/inicio-sesion" element={<><Navbar/><InicioSesion/><Footer/></>} />
           <Route  path="/registro" element={<><Navbar/><Registro/><Footer/></>} />
           <Route  path="/conductoras" element={<><Navbar/><Conductoras/><Footer/></>} />
+          <Route  path='/perfil' element={<RedirectPage/>} />
           <Route  path='/perfil/viajes' element={<Viajes/>} />
           <Route  path='/perfil/viajes/success' element='VIAJE PAGADO' />
           <Route  path='/perfil/viajes/failure' element='ERROR AL PROCESAR EL PAGO' />

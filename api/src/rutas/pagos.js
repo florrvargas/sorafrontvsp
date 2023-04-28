@@ -7,7 +7,6 @@ require('dotenv').config();
 const mercadopago = require("mercadopago");
 // Agrega credenciales
 const { MP_ACCESS_TOKEN} = process.env
-console.log(MP_ACCESS_TOKEN)
 
 const api = MP_ACCESS_TOKEN
 mercadopago.configure({
