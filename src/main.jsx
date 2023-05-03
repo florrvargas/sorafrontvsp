@@ -17,7 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         // para local
         // redirect_uri: 'http://localhost:5173/perfil'
         // para deploy
-        redirect_uri: 'http://sora.travel/perfil'
+        redirect_uri: 'https://sora.travel/perfil'
       }}
     >
       <App />
