@@ -110,6 +110,12 @@ const {mailUsuarioCreado} = require('../helpers/mailsService');
 		}
 	  });
 
+	router.get("/users/test", async (req, res) => {
+
+		res.status(200).send("Back funcionando");
+
+	  });
+
 
 
 module.exports = router;
