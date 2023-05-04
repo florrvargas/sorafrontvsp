@@ -101,14 +101,14 @@ const {mailUsuarioCreado} = require('../helpers/mailsService');
 	  });
 
 
-	router.delete("/users/:id", async (req, res) => {
-		try {
-		  const { id } = req.params;
-		  res.status(200).json(await borrarUsuario(id));
-		} catch (error) {
-		  res.status(400).json({ error: error.message });
-		}
-	  });
+	// router.delete("/users/:id", async (req, res) => {
+	// 	try {
+	// 	  const { id } = req.params;
+	// 	  res.status(200).json(await borrarUsuario(id));
+	// 	} catch (error) {
+	// 	  res.status(400).json({ error: error.message });
+	// 	}
+	//   });
 
 	router.get("/users/test", async (res) => {
 
