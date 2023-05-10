@@ -88,6 +88,7 @@ const {mailUsuarioCreado} = require('../helpers/mailsService');
 		  const userId = await User.findOne({
 			where: {
 			  correo: correo,
+			  
 			},
 		  });
 		  if (userId) {
