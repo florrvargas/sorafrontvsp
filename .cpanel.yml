@@ -3,5 +3,3 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/soratrav/public_html/
     - /bin/rsync -av dist/ $DEPLOYPATH
-    - export DEPLOYBACKPATH=/home/backend.sora.travel
-    - /bin/rsync -av api/ $DEPLOYBACKPATH

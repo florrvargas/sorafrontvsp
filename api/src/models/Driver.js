@@ -35,6 +35,50 @@ module.exports = (sequelize) => {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
+		carnetidentidad: {
+			type: DataTypes.TEXT,
+			allowNull: false
+		  },
+		hojaDeVida: {
+			type: DataTypes.TEXT,
+			allowNull: false
+		  },
+		antecedentes: {
+			type: DataTypes.TEXT,
+			allowNull: false
+		  },
+		numeroCuenta: {
+			type: DataTypes.INTEGER,
+			allowNull: false
+		  },
+		documentosVehiculo: {
+			type: DataTypes.TEXT,
+			allowNull: false
+		  },
+		licenciaConducir: {
+			type: DataTypes.TEXT,
+			allowNull: false
+		  },
+		imagenSeguro: {
+			type: DataTypes.TEXT,
+			allowNull: false
+		  },
+		tipoDeViaje: {
+			type: DataTypes.ARRAY(DataTypes.TEXT),
+			allowNull:false
+		  },
+		vehiculoAsegurado: {
+			type: DataTypes.ENUM(
+			  "si",
+			  "no"
+			),
+			defaultValue: null,
+			allowNull: false,
+			validate: {
+			  isIn: [["si",
+			  "no"]],
+			},
+		  },
 	},
 	{ timestamps: false }
 	);

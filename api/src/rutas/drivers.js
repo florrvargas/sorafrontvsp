@@ -3,27 +3,71 @@ const router = Router();
 const {Driver} = require('../db');
 const {encrypt, compare} = require('../helpers/bcrypt');
 const {mailUsuarioCreado} = require('../helpers/mailsService');
+const { subirImagen } = require('../helpers/cloudinary');
+
 
 router.post('/registro', async (req, res) => {
-	const {nombre, contraseña, correo, foto} = req.body;
+	const {	nombre,
+		 	contraseña,
+			correo,
+			foto,
+			direccion,
+			carnetidentidad,
+			hojaDeVida,
+			antecedentes,
+			numeroCuenta,
+			documentosVehiculo,
+			licenciaConducir,
+			imagenSeguro,
+			tipoDeViaje,
+			vehiculoAsegurado,
+		} = req.body;
 
 	try {
 		const contraseñaHash = await encrypt(contraseña);
+
+		const perfil = await subirImagen (req.files.foto.tempFilePath);
+		const carnetidentidad = await subirImagen (req.files.carnetidentidad.tempFilePath);
+		const hojaDeVida = await subirImagen (req.files.hojaDeVida.tempFilePath);
+		const antecedentes = await subirImagen (req.files.antecedentes.tempFilePath);
+		const documentosVehiculo = await subirImagen (req.files.documentosVehiculo.tempFilePath);
+		const licenciaConducir = await subirImagen (req.files.licenciaConducir.tempFilePath);
+		const imagenSeguro = await subirImagen (req.files.imagenSeguro.tempFilePath);
+  		
+  
+  		await fs.unlink(req.files.foto.tempFilePath);
+  		await fs.unlink(req.files.carnetidentidad.tempFilePath);
+  		await fs.unlink(req.files.hojaDeVida.tempFilePath);
+  		await fs.unlink(req.files.antecedentes.tempFilePath);
+  		await fs.unlink(req.files.documentosVehiculo.tempFilePath);
+  		await fs.unlink(req.files.licenciaConducir.tempFilePath);
+  		await fs.unlink(req.files.imagenSeguro.tempFilePath);
+
 		const createDriver = await Driver.create({
 			nombre,
 			contraseña: contraseñaHash,
 			correo,
-			foto,
+			foto : perfil.secure_url,
+			direccion,
+			carnetidentidad,
+			hojaDeVida : hojaDeVida.secure_url,
+			antecedentes : antecedentes.secure_url,
+			numeroCuenta,
+			documentosVehiculo : documentosVehiculo.secure_url,
+			licenciaConducir : licenciaConducir.secure_url,
+			imagenSeguro: imagenSeguro.secure_url,
+			tipoDeViaje,
+			vehiculoAsegurado,
 		});
 
 		///// notificación por mail - usuario registrado
 
-		const asunto = 'Bienvenida a Sora';
+		// const asunto = 'Bienvenida a Sora';
 
-		const texto = `<p>Hola ${nombre}!<br><br>Estamos muy felices de recibirte en Sora!<br><br>A partir de ahora vas a poder usar nuestro servicio y viajar feliz y segura!<br><br>
-						<br><br>Nos vemos!</p>`;
+		// const texto = `<p>Hola ${nombre}!<br><br>Estamos muy felices de recibirte en Sora!<br><br>A partir de ahora vas a poder usar nuestro servicio y viajar feliz y segura!<br><br>
+		// 				<br><br>Nos vemos!</p>`;
 
-		mailUsuarioCreado(correo, asunto, texto);
+		// mailUsuarioCreado(correo, asunto, texto);
 
 		/////////
 
