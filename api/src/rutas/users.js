@@ -5,7 +5,7 @@ const {encrypt, compare} = require('../helpers/bcrypt');
 const {tokenSign} = require('../helpers/generarToken');
 const {mailUsuarioCreado} = require('../helpers/mailsService');
 
-	router.post('/registro', async (req, res) => {
+router.post('/registro', async (req, res) => {
 		const {nombre, correo, contraseña, foto} = req.body;
 
 		try {
@@ -41,9 +41,9 @@ const {mailUsuarioCreado} = require('../helpers/mailsService');
 			res.status(400).send({error: error.message});
 
 		}
-	});
+});
 
-	router.post('/login', async (req, res) => {
+router.post('/login', async (req, res) => {
 		const {correo, contraseña} = req.body;
 
 		try {
@@ -67,9 +67,9 @@ const {mailUsuarioCreado} = require('../helpers/mailsService');
 		} catch (error) {
 			res.status(400).json({ error: error.message });
 		}
-	});
+});
 
-	router.get("/users", async (req, res) => {
+router.get("/users", async (req, res) => {
 	try {
 		const users = await User.findAll();
 		if (!users.length) {
@@ -80,9 +80,9 @@ const {mailUsuarioCreado} = require('../helpers/mailsService');
 	} catch (error) {
 		res.status(400).send({ error: error.message });
 	}
-	});
+});
 
-	router.get("/users/:correo", async (req, res) => {
+router.get("/users/:correo", async (req, res) => {
 		try {
 		  const { correo } = req.params;
 		  const userId = await User.findOne({
@@ -99,17 +99,55 @@ const {mailUsuarioCreado} = require('../helpers/mailsService');
 		} catch (error) {
 		  console.log(error);
 		}
-	  });
+});
 
+router.delete("/user/:correo", async (req, res) => {
 
-	// router.delete("/users/:id", async (req, res) => {
-	// 	try {
-	// 	  const { id } = req.params;
-	// 	  res.status(200).json(await borrarUsuario(id));
-	// 	} catch (error) {
-	// 	  res.status(400).json({ error: error.message });
-	// 	}
-	//   });
+		const { correo } = req.params;
+		  try {
+			const user = await User.findOne({
+			  where: {
+				correo: correo,
+			  },
+			  });
+	  
+			if(user){
+			  await User.destroy({
+				where: {
+					correo: correo,
+				},
+				});
+			}
+	  
+			
+			}catch (error) {
+		  res.status(400).json({ error: error.message });
+		}
+});
+
+router.put("/editarUser", async (req, res) => {
+  
+	const { nombre, correo, edad, direccion  } = req.body;
+  
+	const usuarioActualizado = {
+		nombre,
+		correo,
+		edad,
+		direccion,
+	};
+	
+	const usuarioEncontrado = await User.findOne({
+	  where: {
+		correo: correo,
+	  },
+	});
+	
+	await usuarioEncontrado.update(nuevaConductora, { where: { correo: correo } });
+	await usuarioEncontrado.save();
+  
+	res.status(200).send(viajeEcontrado);
+	});
+  
 
 	router.get("/test", async (req, res)=> {
 

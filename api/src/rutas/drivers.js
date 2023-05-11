@@ -101,7 +101,7 @@ router.post('/login', async (req, res) => {
 	}
 });
 
-	router.get("/conductoras", async (req, res) => {
+router.get("/conductoras", async (req, res) => {
 		try {
 			const drivers = await Driver.findAll();
 			if (!drivers.length) {
@@ -113,5 +113,77 @@ router.post('/login', async (req, res) => {
 			res.status(400).send({ error: error.message });
 		}
 		});
+
+router.get("/conductoras/:correo", async (req, res) => {
+	try {
+		const { correo } = req.params;
+		const conductora = await Driver.findOne({
+		  where: {
+			correo: correo,
+		  },
+		});
+		if (conductora) {
+		  res.status(200).send(conductora);
+		} else {
+		  res.status(400).send("No hay ninguna conductora con el correo ingresado");
+		}
+	  } catch (error) {
+		console.log(error);
+	  }
+	});
+
+router.delete("/conductoras/:correo", async (req, res) => {
+
+		const { correo } = req.params;
+			try {
+				const conductora = await Driver.findOne({
+					where: {
+					  correo: correo,
+					},
+				  });
+
+				if(conductora){
+					await Driver.destroy({
+						where: {
+						  correo: correo,
+						},
+					  });
+				}
+
+				
+			  }catch (error) {
+		  res.status(400).json({ error: error.message });
+		}
+	  });
+
+router.put("/editarConductora", async (req, res) => {
+
+		const { nombre, correo, edad, direccion } = req.body;
+
+		const nuevaConductora = {
+		  nombre,
+		  correo,
+		  edad,
+		  direccion,
+		};
+	  
+		const conductoraEncontrada = await Driver.findOne({
+		  where: {
+			correo: correo,
+		  },
+		});
+	  
+		await conductoraEncontrada.update(nuevaConductora, { where: { correo: correo } });
+		await conductoraEncontrada.save();
+		const conductoraActualizada = {
+		  nombre: userEncontrado.nombre,
+		  contraseña: userEncontrado.contraseña,
+		  correo: userEncontrado.correo,
+		  edad: userEncontrado.edad,
+		  direccion: userEncontrado.direccion,
+		};
+		res.status(200).send(conductoraActualizada);
+	  });
+	  
 
 module.exports = router;
