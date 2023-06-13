@@ -19,9 +19,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       clientId='qBy6h2IoEMMJGBRJSy76IwZLMwh1nwNq'
       authorizationParams={{
         // para local
-        // redirect_uri: 'http://localhost:5173/perfil'
+        redirect_uri: 'http://localhost:5173/perfil'
         // para deploy
-        redirect_uri: 'https://sora.travel/perfil'
+        // redirect_uri: 'https://sora.travel/perfil'
       }}
     >
       <App />
