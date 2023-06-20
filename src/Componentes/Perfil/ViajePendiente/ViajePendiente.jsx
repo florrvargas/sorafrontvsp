@@ -29,19 +29,19 @@ if(viaje && viaje.length){
   return (
      <div className="containerMiCuenta">
     <SideBar/>
-    <div className='misDatos'>
+    <div className='viajePendiente'>
         <h1>Tu Auto fue Reservado.</h1>
         <h3 id='h3'>En instantes enviaremos a tu SoraWoman.</h3><br/><br/><br/>
-        <div className="miViaje" key={viaje[0].id}>
+        <div className="operacion" key={viaje[0].id}>
           <h2 id='operacion'>Operacion EXITOSA # {paymentId}</h2>
-          <div className="ubicacion ">
+          <div className="detalle ">
           <UilMapPinAlt size='1.5rem' color='var(--purple2)'/>
           <div className="pedido">
             <span>Origen </span>
             <h2>{viaje[0].origen}</h2>
           </div>
           </div>
-          <div className="ubicacion">
+          <div className="detalle">
           <UilLocationPinAlt size='1.5rem' color='var(--purple2)'/>
           <div className="pedido">
             <span>Destino </span>

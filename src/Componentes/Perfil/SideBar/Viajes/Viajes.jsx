@@ -103,7 +103,7 @@ export default function Viajes() {
         setDestino={(position) => {setDestino(position);
           }}
          />
-      {/* <button className={`sigin-btn ${disableButton}`} onClick={result} >Calcular</button> */}
+    
       <button className={`sigin-btn `} onClick={result} >Calcular</button>
       { done && directions ? 
         <Distancia 

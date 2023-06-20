@@ -82,3 +82,12 @@
       opacity: 0;
     }
   }
+
+  @media screen and (max-width:600px) {
+    .formRegistro {
+      max-width: 300px;
+    }
+    .inputt{
+      width: 250px;
+    }
+  }

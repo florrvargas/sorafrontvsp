@@ -18,12 +18,22 @@
     margin-bottom: 2rem;
 }
 
+  
 .inicio img,
 .whySora img{
     border-radius: 10px;
     transform: scale(.8);
     filter:brightness(.8);
+    
+}
 
+
+@media (max-width: 576px) {
+    .inicio img,
+    .whySora img {
+    display: none;
+       
+    }
 }
 
 .inicioRight{
@@ -40,9 +50,27 @@
     margin-left: 2rem;
 }
 
+
 .inicioRight span{
     font-size: 20px;
 }
+
+@media (max-width: 576px) {
+    .inicioRight {
+      margin-left: 1rem;
+    }
+    #h1{
+        font-size: 35px;
+    }
+    .inicioRight span{
+        font-size: 18px;
+      margin-left: 2rem;
+
+    }
+    
+
+  }
+
 
 .razones{
     display: flex;

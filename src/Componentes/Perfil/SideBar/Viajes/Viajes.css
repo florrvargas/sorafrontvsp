@@ -20,7 +20,7 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    width: fit-content;
+    max-width: fit-content;
     top: 2rem;
     margin: 1rem .5rem;
     position: absolute;
@@ -72,4 +72,18 @@
 
 .eliminarBtn{
     display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .map {
+    margin-left: 36px;
+    }
+    .rightViajes{
+        transform: scale(.9);
+        margin-top: -3rem;
+        max-width: 250px;
+    }
+    .rightViajes.form{
+        padding: 1rem 2rem;
+    }
 }

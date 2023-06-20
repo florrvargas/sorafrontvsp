@@ -10,6 +10,7 @@ export default function SideBar() {
   const navigate = useNavigate();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
   const [userType, setUserType] = useState(JSON.parse(localStorage.getItem('userType')));
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem('user'));
@@ -28,18 +29,20 @@ export default function SideBar() {
     navigate('/'); 
 };
 
+const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+
     return (
-        <div className="sideBar">
+        <div className={`sideBar ${isMenuOpen ? 'open' : ''}`}>
 
         <nav>
-            {/* <div className="button_sidebar">
-                <label htmlFor="check" className="menuButton">
-                <input id="check" type="checkbox"/>
-                    <span className="top"></span>
-                    <span className="mid"></span>
-                    <span className="bot"></span>
-                </label>
-            </div> */}
+            <div className={`sideLine ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>
+            <div className="line"></div>
+            <div className="line"></div>
+            <div className="line"></div>
+            </div>
 
             {!user? <p>Loading...</p>: 
             

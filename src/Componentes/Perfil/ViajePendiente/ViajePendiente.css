@@ -1,3 +1,15 @@
+.viajePendiente {
+    width: 53%;
+    margin: 2rem;
+    margin-left: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+}
+
 #operacion {
     border-bottom: 1px solid var(--purple1);
     display: flex;
@@ -12,6 +24,26 @@
 #h3 {
     color: var(--purple1);
 }
+
+.operacion{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 400px;
+    padding: 15px;
+    border-radius: 5px;
+    border-top: 10px solid var(--purple1);
+    box-shadow:  3px 8px 14px 1px rgba(0,0,0,0.45);
+    -webkit-box-shadow: 3px 8px 14px 1px rgba(0,0,0,0.45);
+    -moz-box-shadow: 3px 8px 14px 1px rgba(0,0,0,0.45);;
+}
+
+.detalle{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+ }
 
 .esperando{
     width: 40rem;
@@ -28,4 +60,25 @@
     position: fixed;
     justify-content: center;
     align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+    .viajePendiente {
+        margin-left: 130px;
+    }
+
+    .viajePendiente h1{
+        margin-left: -3rem;
+        font-size: 22px;
+    }
+
+    #h3{
+        margin-left: -3rem;
+        font-size: 18px;
+    }
+    .operacion{
+        transform: scale(.75);
+        margin-left: -2.5rem;
+        margin-top: -5rem;
+    }
 }

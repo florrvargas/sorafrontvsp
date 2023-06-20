@@ -74,3 +74,14 @@
     
     font-weight: bold;
   }
+
+
+  @media screen and (max-width: 768px) {
+   .rightMisViajes{
+      margin-left: 60px;
+   }
+
+   .miViaje{
+    width: 300px;
+   }
+  }

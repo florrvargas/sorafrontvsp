@@ -70,7 +70,7 @@ export default function Registro() {
                   onChange={(e) => setNombre(e.target.value)}
                   value={nombre}
                   placeholder="Nombre"
-                  className="input"/>
+                  className="inputt"/>
             </label>  
           </div> 
             <label>
@@ -109,7 +109,6 @@ export default function Registro() {
       
         <button className="sigin-btn" onClick={handleRegister}>Registrarme</button>
 
-        <button class="sigin-btn" id="signInButton"></button>
         <p class="signin">¿Ya tienes una cuenta? <a href="/inicio-sesion">Inicia sesión</a> </p>
       </form>
     </div>

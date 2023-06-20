@@ -59,7 +59,6 @@
 
   .ser-conductora {
     margin-top: 5rem;
- 
     padding: 10px;
     display: flex;
     gap: 1rem;
@@ -77,5 +76,17 @@
     margin-left: 3rem;
   }
 
-
-  
+  @media screen and (max-width: 768px) {
+    .misDatos{
+    margin-left: 100px;
+    margin-top: -2rem;
+    transform: scale(.9);
+    }
+    .misDatos img{
+      transform: scale(.8);
+    }
+    .ser-conductora{
+      width: 300px;
+      transform: scale(.9);
+    }
+  }
