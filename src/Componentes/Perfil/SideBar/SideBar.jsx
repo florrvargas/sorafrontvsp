@@ -1,19 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SideBar.css';
 import { useNavigate } from 'react-router-dom';
-import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from 'react';
-
+import perfil from '../../../assets/perfil.png'
+import { useSelector } from 'react-redux';
 
 export default function SideBar() {
 
-  const { user, isLoading, logout, isAuthenticated } = useAuth0()
+  const navigate = useNavigate();
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+  const [userType, setUserType] = useState(JSON.parse(localStorage.getItem('userType')));
 
-  const navigate = useNavigate()
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem('user'));
+    const userTypeData = JSON.parse(localStorage.getItem('userType'));
+
+    setUser(userData);
+    setUserType(userTypeData);
+  }, []);
+
+  const handleLogout = async () => {
+    await localStorage.removeItem('user');
+    await localStorage.removeItem('userType');
+    setUser(null);
+    setUserType(null);
+
+    navigate('/'); 
+};
 
     return (
         <div className="sideBar">
- 
+
         <nav>
             {/* <div className="button_sidebar">
                 <label htmlFor="check" className="menuButton">
@@ -24,16 +41,17 @@ export default function SideBar() {
                 </label>
             </div> */}
 
-            <div className="user-profile">
+            {!user? <p>Loading...</p>: 
+            
 
-                {isLoading? <h3>cargando...</h3>:
-                
+            <div className="user-profile">
                 <div>
-                    <img src={user.picture} alt="admin-picture" width='100px'/>
-                    <h3>{user.given_name} {user.family_name}</h3>  
-                </div>}
-                         
-            </div>
+                    <img src={user.foto? user.foto: perfil} alt="admin-picture" width='100px'/>
+                    <h3>{user.nombre} </h3>  
+                </div>
+            </div>}
+
+            {userType && userType === "pasajera" ?
 
             <div className="side-nav">
             <ul >
@@ -43,8 +61,8 @@ export default function SideBar() {
                     </a>
                 </li>
                 <li className="side">
-                    <a href='/perfil/metodos_de_pagos'>
-                        <span>  Métodos de pago</span>
+                    <a href='/perfil/mis-viajes'>
+                        <span>  Mis viajes</span>
                     </a>
                 </li>
                 <li className="side">
@@ -54,18 +72,46 @@ export default function SideBar() {
                 </li>
                 <li className="side">
                     <a href="/">
-                        <span onClick={logout}>Cerrar sesión</span>
+                        <span >Cerrar sesión</span>
                     </a>
                 </li>
-                {/* <li className="side-nav_refug">
-                    <a href="/dashboard/refugios">
-                    <img src={refugio} width='25px'/>
-                    <span>Refugios</span>
-                    </a>
-                </li> */}
+                
             </ul>
-            </div>
+            </div> :
+            userType && userType === "conductora" ?
+            <div className="side-navBar">
+            <ul >
+                 <li className="side">
+                    <a href='/perfil/solicitudes'>
+                        <span> Solicitudes </span>
+                    </a>
+                </li>
+                <li className="side">
+                    <a href='/perfil/mis-viajes'>
+                        <span> Viajes realizados</span>
+                    </a>
+                </li>
+                <li className="side">
+                    <a href="/perfil/mi-cuenta">
+                        <span>Mi cuenta</span>
+                    </a>
+                </li>
+                <li className="side">
+                    <a href="/perfil/viajes">
+                        <span>Pedir un viaje</span>
+                    </a>
+                </li>
+                <li className="side">
+                    <a onClick={handleLogout}>
+                        <span >Cerrar sesión</span>
+                    </a>
+                </li>
+                
+            </ul>
+            </div>: null
+            }
         </nav>
+         
     </div>
 
 )

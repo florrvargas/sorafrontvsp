@@ -10,15 +10,20 @@ export default function Places({placeholder, setOrigen, setDestino}) {
     const handleInput = (e) => {setValue(e.target.value);};
   
     const handleSelect = ({ description }) => () => {
-        // When user selects a place, we can replace the keyword without request data from API
-        // by setting the second parameter to "false"
+        
         setValue(description, false);
         clearSuggestions();
         // Get latitude and longitude via utility functions
         getGeocode({ address: description }).then((results) => {
           const { lat, lng } = getLatLng(results[0]);
-          {setOrigen? setOrigen({ lat, lng}) : null}
-          {setDestino? setDestino({ lat, lng}) : null}
+          const address = `${results[0].address_components[1].short_name} ${results[0].address_components[0].short_name}, ${results[0].address_components[3].short_name}, ${results[0].address_components[5].short_name}, ${results[0].address_components[6].short_name}`
+    console.log(address)
+          if (setOrigen) {
+            setOrigen({ lat, lng, placeName: address });
+          }
+          if (setDestino) {
+            setDestino({ lat, lng, placeName: address });
+          }
         });
       };
   

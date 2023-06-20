@@ -1,144 +1,117 @@
 import React, { useEffect } from 'react';
 import './Registro.css'
-import { useAuth0 } from '@auth0/auth0-react';
 import { useState } from 'react';
-import { loginUsuario, registroUsuario } from '../../redux/actions';
+import { registroUsuario } from '../../redux/actions'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import jwtDecode from 'jwt-decode';
 
 export default function Registro() {
 
-    const {loginWithRedirect} = useAuth0()
-    
+  const dispatch = useDispatch();
+  const [nombre, setNombre] = useState('');
+  const [correo, setCorreo] = useState('');
+  const [contraseña, setContraseña] = useState('');
+  const [confirmarContraseña, setConfirmarContraseña] = useState('');
+  const navigate = useNavigate();
 
-    function validate(input) {
-        let errors = {};
-      
-        if (!input.nombre) {
-          errors.nombre = "Se requiere un nombre";
-        } else if (!input.contraseña) {
-          errors.contraseña = "Se requiere una contraseña";
-        } else if (!input.correo || !input.correo.includes("@")) {
-          errors.correo = "Se requiere correo";
-        } else if (input.contraseña != input.confirmarContraseña) {
-          errors.rango = "Las contraseñas no coinciden";
-        }
-      
-        return errors;
-      }
+  const isEmailValid = (correo) => {
+    const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return emailRegex.test(correo);
+  };
 
-      
-  function handleChange(e) {
-    e.preventDefault();
-    setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    
-  }
+  const isPasswordValid = (password) => {
+    return password.length >= 6;
+  };
 
-  function handleSubmit(e) {
-    if (
-      !input.nombre ||
-      !input.contraseña ||
-      !input.correo
-    ) {
-      e.preventDefault();
-      alert("Verifique los campos para poder continuar");
-    } else {
-      e.preventDefault();
-      const newUser = {
-        nombre: input.nombre,
-        correo: input.correo,
-        contraseña: input.contraseña
-      }
+  const isConfirmPasswordValid = (password, confirmPassword) => {
+    return password === confirmPassword;
+  };
 
-      dispatch(registroUsuario(newUser)); 
-
-      setInput({
-        nombre: "",
-        contraseña: "",
-        correo: "",
-        confirmarContraseña:"",
-      });
-
-      navigate("/perfil/viajes")
+  const handleRegister = async () => {
+    try {
+   
+    if (!isEmailValid(correo)) {
+      alert("El correo no es válido.")
     }
 
+    if (!isPasswordValid(contraseña)) {
+      alert("La contraseña debe tener al menos 6 caracteres.")
+    }
+
+    if (!isConfirmPasswordValid(contraseña, confirmarContraseña)) {
+      alert("La contraseña y la confirmación de contraseña no coinciden.")
+    }
+
+    const payload = { nombre, correo, contraseña };
+    const user = dispatch(registroUsuario(payload));
+
+    if (user) {
+      navigate("/perfil/viajes");
+    } else {
+      alert("No se pudo completar el registro.");
+    }
+  } catch (error) {
+    console.log(error);
+    alert("Ha ocurrido un error.");
   }
-
-
-      const onSuccess = (response) => {
-        setUser(response.profileObj);
-    
-        const res = {
-          nombre : response.profileObj.name,
-          contraseña : response.googleId ,
-          correo: response.profileObj.email 
-            
-        }
-
-        console.log(response)
-    
-        dispatch(registroUsuario(res))
-        document.getElementsByClassName("btn").hidden = true;
-    
-        alert("Usuario creado")
-    
-        navigate("/")
-    
-    
-      }
-
-      const onFailure = (response) => {
-        console.log(response);
-        console.log(response.profileObj);
-      }
-
-      const [errors, setErrors] = useState({});
-      const [user, setUser] = useState({});
-      const navigate = useNavigate();
-      const dispatch = useDispatch()
-
-      const [input, setInput] = useState({
-        nombre: "",
-        contraseña: "",
-        correo: "",
-        confirmarContraseña:"",
-      });
-
-    
+};
+ 
   return (
     <div className='registro'>
       <form class="formRegistro" >
-    <h1 class="title">Regístrate </h1>
-        <div class="flex">
-        <label>
-            <input required="" type="text" name='nombre' onChange={handleChange}  value={input.nombre} placeholder="Nombre"  class="input"/>
-        </label>
+        <h1 class="title">Regístrate </h1>
+          <div class="flex">
+            <label>
+                <input  
+                  required
+                  type="text"
+                  name="nombre"
+                  onChange={(e) => setNombre(e.target.value)}
+                  value={nombre}
+                  placeholder="Nombre"
+                  className="input"/>
+            </label>  
+          </div> 
+            <label>
+              <input
+                required
+                type="email"
+                name="correo"
+                onChange={(e) => setCorreo(e.target.value)}
+                value={correo}
+                placeholder="Email"
+                className="inputt"
+              />
+            </label>
+            <label>
+              <input
+                required
+                type="password"
+                name="contraseña"
+                onChange={(e) => setContraseña(e.target.value)}
+                value={contraseña}
+                placeholder="Contraseña"
+                className="inputt"
+              />
+            </label>
+            <label>
+              <input
+                required
+                type="password"
+                name="confirmarContraseña"
+                onChange={(e) => setConfirmarContraseña(e.target.value)}
+                value={confirmarContraseña}
+                placeholder="Confirmar contraseña"
+                className="inputt"
+              />
+            </label>
+      
+        <button className="sigin-btn" onClick={handleRegister}>Registrarme</button>
 
-    </div>  
-            
-    <label>
-        <input required="" type="email" name='correo' onChange={handleChange} value={input.correo} placeholder="Email" class="inputt"/>
-    </label> 
-        
-    <label>
-        <input required="" type="password" name='contraseña' onChange={handleChange} value={input.contraseña} placeholder="Contraseña" class="inputt"/>
-        
-    </label>
-    <label>
-        <input required="" type="password" name='confirmarContraseña' onChange={handleChange} value={input.confirmarContraseña} placeholder="Confirmar contraseña" class="inputt"/>
-       
-    </label>
-    <button class="sigin-btn" onClick={loginWithRedirect} >Registrarme</button>
-
-    <button class="sigin-btn" id="signInButton"></button>
-
-    
-    
-
-
-    <p class="signin">¿Ya tienes una cuenta? <a href="/inicio-sesion">Inicia sesión</a> </p>
-</form>
+        <button class="sigin-btn" id="signInButton"></button>
+        <p class="signin">¿Ya tienes una cuenta? <a href="/inicio-sesion">Inicia sesión</a> </p>
+      </form>
     </div>
   )
 }

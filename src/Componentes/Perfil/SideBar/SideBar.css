@@ -1,12 +1,13 @@
 .sideBar{
     position:fixed;
     text-align: center;
-    background-color: var(--purple2);
+    background: linear-gradient(var(--purple2), var(--pink1), var(--pink3));
     color: white;
     width: 200px;
     height:100%;
     border-right: solid var(--purple1) 1px ;
 }
+
 
 .sideBar ul li {
     border-bottom: 1px solid var(--yellow);
@@ -31,6 +32,16 @@
     flex-direction: column;
     align-items: center;
     margin-left: -2rem;
+}
+
+.side-navBar {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: -2rem;
+  background: var(--purple2);
+  padding-bottom: 50px;
 }
 
 

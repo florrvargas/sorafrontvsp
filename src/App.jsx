@@ -12,9 +12,13 @@ import Conductoras from './Componentes/Conductoras/Conductoras';
 import RedirectPage from './Componentes/Perfil/RedirectPage';
 import MiCuenta from './Componentes/Perfil/SideBar/MiCuenta/MiCuenta';
 import Viajes from './Componentes/Perfil/SideBar/Viajes/Viajes';
-import MetodosPagos from './Componentes/Perfil/SideBar/MetodosPagos/MetodosPagos';
+import MisViajes from './Componentes/Perfil/SideBar/MisViajes/MisViajes';
 import { Provider } from 'react-redux';
 import store from './redux/store.js'
+import ViajesSolicitados from './Componentes/Perfil/SideBar/ViajesSolicitados/ViajesSolicitados';
+import DetalleViaje from './Componentes/Perfil/DetalleViaje/DetalleViaje';
+import ViajePendiente from './Componentes/Perfil/ViajePendiente/ViajePendiente';
+import EncuestaFinal from './Componentes/Perfil/EncuestaFinal/EncuestaFinal';
 
 function App() {
   return (
@@ -30,13 +34,17 @@ function App() {
           <Route  path="/inicio-sesion" element={<><Navbar/><InicioSesion/><Footer/></>} />
           <Route  path="/registro" element={<><Navbar/><Registro/><Footer/></>} />
           <Route  path="/conductoras" element={<><Navbar/><Conductoras/><Footer/></>} />
-          <Route  path='/perfil' element={<RedirectPage/>} />
+          {/* <Route  path='/perfil' element={<RedirectPage/>} /> */}
           <Route  path='/perfil/viajes' element={<Viajes/>} />
-          <Route  path='/perfil/viajes/success' element='VIAJE PAGADO' />
+          <Route  path='/perfil/viajes/success' element={<ViajePendiente/>} />
           <Route  path='/perfil/viajes/failure' element='ERROR AL PROCESAR EL PAGO' />
           <Route  path='/perfil/viajes/pending' element='PAGO PENDIENTE' />
           <Route  path='/perfil/mi-cuenta' element={<MiCuenta/>} />
-          <Route  path='/perfil/metodos_de_pagos' element={<MetodosPagos/>} />
+          <Route  path='/perfil/mis-viajes' element={<MisViajes/>} />
+          <Route  path='/perfil/solicitudes' element={<ViajesSolicitados/>} />
+          <Route  path='/perfil/:id' element={<DetalleViaje/>} />
+          <Route  path='/perfil/viaje-finalizado' element={<EncuestaFinal/>} />
+
         </Routes>
     </div>
     </Provider>

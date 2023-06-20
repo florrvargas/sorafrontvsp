@@ -44,9 +44,10 @@ export default function Navbar() {
                 <a href="">Idioma</a>
             </li> */}
          
-            <a>
-                <button onClick={loginWithRedirect}>Ingresar</button>
+            <a href='/inicio-sesion'>
+                <button >Ingresar</button>
             </a>
+          
             
         </ul>
         </div>

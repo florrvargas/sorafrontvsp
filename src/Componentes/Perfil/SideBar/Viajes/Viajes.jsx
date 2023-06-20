@@ -24,9 +24,7 @@ export default function Viajes() {
   const [ destino, setDestino] = useState('');
   const [directions, setDirections] = useState()
   const [disableButton, setDisableButton] = useState()
-  const {user} = useAuth0()
-  
-  console.log(JSON.stringify(user))
+
   useEffect(() => {
     
     navigator.geolocation.getCurrentPosition((position)=> {
@@ -62,7 +60,7 @@ export default function Viajes() {
       }
     );
   };
-  
+
   
   
   function result(){
@@ -99,16 +97,20 @@ export default function Viajes() {
         placeholder={'Origen'} 
         setOrigen={(position) => {setOrigen(position);
       }} />
-      <p>Ej: direccion 1</p>
+      
       <Places 
         placeholder={'Destino'}
         setDestino={(position) => {setDestino(position);
           }}
          />
-      <p>Ej: direccion 2</p>
-      <button className={`sigin-btn ${disableButton}`} onClick={result} >Calcular</button>
-      { done && directions ? <Distancia viaje={directions.routes[0].legs[0]} />
-         : null
+      {/* <button className={`sigin-btn ${disableButton}`} onClick={result} >Calcular</button> */}
+      <button className={`sigin-btn `} onClick={result} >Calcular</button>
+      { done && directions ? 
+        <Distancia 
+          viaje={directions.routes[0].legs[0]}
+          origen={origen}
+          destino= {destino} 
+        />: null
       }
     </div>
     </div>

@@ -1,0 +1,76 @@
+.containerMisViajess{
+    height: 100vh;
+    width: 100%;
+
+}
+
+.rightMisViajes{
+    margin-left: 200px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.noViaje {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+.miViaje{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 400px;
+    padding: 15px;
+    border-radius: 5px;
+    border-top: 10px solid var(--purple1);
+    box-shadow:  3px 8px 14px 1px rgba(0,0,0,0.45);
+    -webkit-box-shadow: 3px 8px 14px 1px rgba(0,0,0,0.45);
+    -moz-box-shadow: 3px 8px 14px 1px rgba(0,0,0,0.45);;
+}
+
+ #fecha{
+    margin-left: 70%;
+ }
+
+ .ubicacion{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+ }
+
+ .items{
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+ }
+
+ .item{
+    display: flex;
+    gap:.3rem;
+    background-color: rgb(231, 231, 231);;
+    border-radius: 5px;
+    padding: 5px 10px;
+ }
+ .pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .numbers {
+    width: 45px;
+    height: 40px;
+    margin-right: 12px;
+    border-radius: 50%;
+  }
+  .numbers:hover {
+    
+    font-weight: bold;
+  }

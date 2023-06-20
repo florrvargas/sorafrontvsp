@@ -1,128 +1,122 @@
-import React, { useState ,useEffect } from 'react';
-import './InicioSesion.css'
-import { loginUsuario } from '../../redux/actions';
+import React, { useState, useEffect } from 'react';
+import './InicioSesion.css';
+import { loginUsuario, registroUsuario } from '../../redux/actions';
 import jwtDecode from 'jwt-decode';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
+// Función para verificar si el usuario está registrado
+const verificarUsuario = (correo, contraseña) => {
+  // Aquí puedes implementar tu lógica para verificar si el usuario está registrado en tu base de datos
+  // Devuelve true si el usuario está registrado y las credenciales son correctas, de lo contrario devuelve false
+  return true;
+};
+
 export default function InicioSesion() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const dispatch = useDispatch()
+  const [input, setInput] = useState({
+    contraseña: '',
+    correo: '',
+  });
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [input, setInput] = useState({
-    contraseña: "",
-    correo: "",
-  });
-
-
   useEffect(() => {
-
     google.accounts.id.initialize({
       client_id: "62274512155-0s8stg20n5c8lmqsa2seet01vfkr2jo5.apps.googleusercontent.com",
-      callback : handleCallbackResponse
+      callback: handleCallbackResponse,
     });
 
-    google.accounts.id.renderButton(
-      document.getElementById("signInButton"),
-      {size:"medium"}
-    );
-
-  }, [])
+    google.accounts.id.renderButton(document.getElementById('google-btn'), { size: 'medium' });
+  }, []);
 
   function handleCallbackResponse(response) {
-    const user =(jwtDecode(response.credential))
+    const user = jwtDecode(response.credential);
+    console.log(user)
 
-    const logUser={
-      correo:user.email,
-      contraseña:user.azp
+    const logUser = {
+      correo: user.email,
+      contraseña: user.azp,
+      nombre: user.name,
+      foto: user.picture
+    };
+
+    dispatch(registroUsuario(logUser))
+    .then(() => navigate('/perfil/viajes'))
+    .catch(error => {
+      alert('Ocurrió un error durante el inicio de sesión. Por favor, inténtalo de nuevo.');
+      console.error(error);
+    });
+  }
+
+  function handleChange(e) {
+    e.preventDefault();
+    setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    if (!input.contraseña || !input.correo) {
+      alert('Verifique los campos para poder continuar');
+      return;
     }
 
-    dispatch(loginUsuario(logUser))
+    const { correo, contraseña } = input;
 
-    navigate("/perfil/viajes")
-  }
-
-  function validate(input) {
-    let errors = {};
-  
-     if (!input.contraseña) {
-      errors.contraseña = "Se requiere una contraseña";
-    } else if (!input.correo || !input.correo.includes("@")) {
-      errors.correo = "Se requiere correo";
-
-  
-    return errors;
-  }
-}
-
-  
-function handleChange(e) {
-e.preventDefault();
-console.log(input);
-setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-
-}
-
-function handleSubmit(e) {
-  try{
-    if (
-      !input.contraseña ||
-      !input.correo
-    ) {
-      e.preventDefault();
-      alert("Verifique los campos para poder continuar");
-    } else {
-      e.preventDefault();
-    
-      const logIn = {
-        correo:input.correo,
-        contraseña:input.contraseña
-      }
-      dispatch(loginUsuario(logIn))
-    
-      setInput({
-        nombre: "",
-        contraseña: "",
-        correo: "",
-        confirmarContraseña:"",
+    dispatch(loginUsuario({ correo, contraseña }))
+      .then(() => navigate('/perfil/viajes'))
+      .catch(error => {
+        alert('Ocurrió un error durante el inicio de sesión. Por favor, inténtalo de nuevo.');
+        console.error(error);
       });
+  }
 
-      navigate("/perfil/viajes")
+  return (
+    <div className='container-inicio'>
+      <form className='form'>
+        <div className='header'>
+          <h1 className='title'>Iniciar Sesion</h1>
+        </div>
+        <div className='inputs'>
+          <input
+            required
+            type='email'
+            name='correo'
+            onChange={handleChange}
+            value={input.correo}
+            placeholder='Email'
+            className='input'
+          />
+          <input
+            required
+            type='password'
+            name='contraseña'
+            onChange={handleChange}
+            value={input.contraseña}
+            placeholder='Contraseña'
+            className='input'
+          />
+          <div className='checkbox-container'></div>
+          <button className='sigin-btn' onClick={handleSubmit}>
+            Iniciar Sesion
+          </button>
+          <a className='forget' href='#'>
+            ¿Olvidaste tu contraseña?
+          </a>
 
- }}catch(error){
-    alert(error)
- }
+          <div className='separator'>
+            <hr className='line' />
+            <span>O</span>
+            <hr className='line' />
+          </div>
 
-}
+          <a id='google-btn'></a>
 
-return (
-  <div className='container-inicio'>
-   <form class="form">
-    <div class="header">
-      <h1 className='title'>Iniciar Sesion</h1></div>
-    <div class="inputs">
-        <input required="" type="email" name='correo' onChange={handleChange} value={input.correo} placeholder="Email" class="input"/>
-        <input required="" type="password" name='contraseña' onChange={handleChange} value={input.contraseña} placeholder="Contraseña" class="input"/>
-    <div class="checkbox-container">
-       
+          <p className='signup-link'>
+            ¿No tienes una cuenta? <a href='/Registro'>Regístrate</a>
+          </p>
+        </div>
+      </form>
     </div>
-    <button class="sigin-btn" onClick={(e)=>handleSubmit(e)}>Iniciar Sesion</button>
-    <a class="forget" href="#">¿Olvidaste tu contraseña?</a>
-    
-
-  <div class="separator">
-    <hr class="line"/>
-    <span>O</span>
-    <hr class="line"/>
-  </div>
-
-  <button class="sigin-btn" id="signInButton"></button>
-
-    <p class="signup-link">¿No tienes una cuenta? <a href="/Registro">Regístrate</a></p>
-    </div>
-</form>
-</div>
-)
+  );
 }

@@ -1,39 +1,71 @@
 import axios from "axios";
 
-  export function registroUsuario(payload) {
-    return async function () {
+export function registroUsuario(payload) {
 
-      try
-        { 
-        let json = await axios.post(`/usuarios/registro`, payload);
-
-        let userCreated = {
-          correo: json.data.user.correo,
-          contraseña: payload.contraseña
-        }
-
-        let logIn = await axios.post(`/usuarios/login`, userCreated);
-
-        return logIn
-
-
-
-      }catch(error){
-        console.log(error)
+  return async function (dispatch) {
+    try {
+      const response = await axios.post('/usuarios/registro', payload);
+      console.log(response)
+      if (response.status === 200) {
+        const user = response.data.createUser;
+        const tipo = response.data.tipo
+        localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('userType', JSON.stringify(tipo));
+        // Dispatch de la acción para guardar el usuario en el estado
+        dispatch({
+          type: "REGISTRO_USUARIO",
+          payload: user,tipo,
+        });
+  
+        return user;
+      } 
+      else {
+        throw new Error(response.data.error);
       }
+   } catch (error) {
+      console.log(error);
+      throw new Error('Error en el servidor');
+    }
+  };
+}
 
-    };
-  }
-
-  export function loginUsuario(payload) {
-    return async function () {
-      let json = await axios.post(`/usuarios/login`, payload);
-
-     localStorage.setItem("login",  JSON.stringify(json.data.usuario)) 
-
-      return json;
-    };
-  }
+export function loginUsuario(payload) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post('usuarios/login', payload);
+        console.log(response)
+      if (response.status === 200) {
+        const pasajera = response.data.usuario;
+        const conductora = response.data.conductora;
+        const tipo = response.data.tipo
+        localStorage.setItem('userType', JSON.stringify(tipo));
+        if (pasajera){
+          localStorage.setItem('user', JSON.stringify(pasajera));
+          dispatch({
+            type: "LOGIN_USUARIO",
+            payload: pasajera, tipo,
+          });
+          return pasajera;
+        }
+        if (conductora){
+          localStorage.setItem('user', JSON.stringify(conductora));
+          dispatch({
+            type: "LOGIN_USUARIO",
+            payload: conductora, tipo,
+          });
+          return conductora;
+        }
+ 
+      } else {
+        throw new Error(response.data.error);
+      }
+    } catch (error) {
+      console.error(error);
+      throw new Error('Error en el servidor');
+    }
+  };
+}
+  
 
 
   export function traerUsuarios() {
@@ -62,18 +94,32 @@ import axios from "axios";
   };
 
   export function registroConductora(payload) {
-    return async function () {
-      let json = await axios.post(`/conductoras/registro`, payload);
-      return json;
+    return async function (dispatch) {
+      try {
+        const response = await axios.post(`/conductoras/registro`, payload);
+        console.log(response)
+        if (response.status === 200) {
+          const user = response.data.createDriver;
+          const tipo = response.data.tipo
+          localStorage.setItem('usuario', JSON.stringify(user,tipo));
+          // Dispatch de la acción para guardar el usuario en el estado
+          dispatch({
+            type: "REGISTRO_USUARIO",
+            payload: user,tipo,
+          });
+    
+          return user;
+        } 
+        else {
+          throw new Error(response.data.error);
+        }
+     } catch (error) {
+        console.log(error);
+        throw new Error('Error en el servidor');
+      }
     };
   }
 
-  export function loginConductora(payload) {
-    return async function () {
-      let json = await axios.post(`/conductoras/login`, payload);
-      return json;s
-    };
-  }
 
   export function traerConductoras() {
     return async function (dispatch) {
@@ -113,3 +159,79 @@ import axios from "axios";
         }
       };
     }
+  
+  export function obtenerViajesPersonalizados(correo, estado) {
+    return async (dispatch) => {
+      try {
+        const response = await axios.get("/viajes/misViajes", {
+          params: {
+            userCorreo: correo,
+            driverCorreo: correo,
+            estado: estado
+          },
+        });
+        // Realizar las acciones correspondientes con los viajes obtenidos
+        dispatch({
+          type: "OBTENER_VIAJES_REALIZADOS",
+          payload: response.data.viajes,
+        });
+      } catch (error) {
+        console.error("Error al obtener los viajes realizados:", error);
+      }
+    
+    };
+  };
+
+  export function obtenerViajesEnEspera() {
+    return async (dispatch) => {
+      try {
+        const response = await axios.get("/viajes/solicitudes");
+        // Realizar las acciones correspondientes con los viajes obtenidos
+        dispatch({
+          type: "OBTENER_VIAJES_SOLICITADOS",
+          payload: response.data.viajes,
+        });
+      } catch (error) {
+        console.error("Error al obtener los viajes :", error);
+      }
+    
+    };
+  };
+
+  export function obtenerViajePorId(id) {
+    return async (dispatch) => {
+    try {
+      const response = await axios.get(`/viajes/viajeSolicitado/${id}`)
+      console.log(response.data)
+      dispatch({
+        type: "OBTENER_VIAJE_POR_ID",
+        payload: response.data,
+      });
+    } catch (error) {
+      console.error('Error al cargar los datos del viaje:', error);
+    }
+  };
+}
+
+export function editarUsuario(id, nombre, contraseña, foto) {
+  return async function (dispatch) {
+    try {
+      const response = await axios.put(`/usuarios/editarUser/${id}`, { nombre, contraseña, foto });
+
+      if (response.status === 200) {
+        // const usuario = response.data.usuario;
+        // dispatch({
+        //   type: "EDITAR_USUARIO",
+        //   payload: usuario,
+        // });
+
+        return usuario;
+      } else {
+        throw new Error(response.data.error);
+      }
+    } catch (error) {
+      console.log(error);
+      throw new Error('Error en el servidor');
+    }
+  };
+}
