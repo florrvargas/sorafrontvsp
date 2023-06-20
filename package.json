@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://sora.travel/",
+  "homepage": "https://frontsora.travel/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
