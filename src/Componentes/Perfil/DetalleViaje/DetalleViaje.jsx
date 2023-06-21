@@ -58,22 +58,24 @@ export default function DetalleViaje() {
   const fetchDirections = () => {
     if (!origen || !destino) return;
   
-    const directionsService = new google.maps.DirectionsService();
-   
-    directionsService.route(
-      {
-        origin: origen,
-        destination: destino,
-        travelMode: google.maps.TravelMode.DRIVING,
-      },
-      (result, status) => {
-        if (status === "OK" && result) {
-          setDirections(result);
-        } else {
-          console.error("Error al obtener la ruta:", status);
+    if (typeof google !== 'undefined' && google.maps && google.maps.DirectionsService) {
+      const directionsService = new google.maps.DirectionsService();
+
+      directionsService.route(
+        {
+          origin: origen,
+          destination: destino,
+          travelMode: google.maps.TravelMode.DRIVING,
+        },
+        (result, status) => {
+          if (status === 'OK' && result) {
+            setDirections(result);
+          } else {
+            console.error('Error al obtener la ruta:', status);
+          }
         }
-      }
-    );
+      );
+    }
   };
 
   const actualizarEstadoViaje = async (id) => {
