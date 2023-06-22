@@ -16,7 +16,7 @@ export default function Places({placeholder, setOrigen, setDestino}) {
         // Get latitude and longitude via utility functions
         getGeocode({ address: description }).then((results) => {
           const { lat, lng } = getLatLng(results[0]);
-          const address = `${results[0].address_components[1].short_name} ${results[0].address_components[0].short_name}, ${results[0].address_components[3].short_name}, ${results[0].address_components[5].short_name}, ${results[0].address_components[6].short_name}`
+           const address = `${results[0].formatted_address}`
     console.log(address)
           if (setOrigen) {
             setOrigen({ lat, lng, placeName: address });

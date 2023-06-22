@@ -57,13 +57,11 @@ if(viaje && viaje.length){
 
 else{
       return (
-        <div className="containerMisViajes">
+        <div className="containerMiCuenta">
       <SideBar/>
-        <div>
-          <h1>Tu Auto fue Reservado.</h1>
-          <h3>En instantes enviaremos a tu SoraWoman.</h3><br/><br/><br/>
-          <h2>Operacion EXITOSA # {paymentId}</h2>
-          <button onClick={()=>navigate(`/perfil/${viaje[0].id}`)}>Continuar</button>
+      <div className='viajePendiente'>
+          <h1>Viaje finalizado</h1>
+          <button onClick={()=>navigate(`/perfil/viajes`)}>Pedir otro viaje</button>
         </div>
         </div>
       )

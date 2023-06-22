@@ -52,11 +52,48 @@ export default function Servicios() {
           </div>
         </div>
 
+        <div className="soraServicios2">
+
+<div className="leftServ">
+  <h1>Sora Woman</h1>
+  <span> Transporte exclusivo para mujeres 👩 </span>
+  <span> Úsalo para moverte con amigas, colegas, tías, hijas, etc. Si necesitas ir a una reunión, llevar a tus hijos al médico, ir al aeropuerto este servicio es para tí.</span>
+  <span></span>
+</div>
+<div className="rightServ">
+  <img src={soraWoman2} alt="" width='400rem'/>
+</div>
+</div>
+
+<div className="soraServicios2">
+<div className="leftServ">
+  <h1>Sora Pet</h1>
+  <span> Transporte exclusivo para mujeres y animalovers 🐶 </span>
+  <span> Úsalo para moverte con tu compañero peludo.</span>
+  <span>Pide tu Sora Pet y sal al parque con tu amigo fiel.</span>
+</div>
+<div className="rightServ">
+  <img src={soraPet2} alt="" width='280rem' />
+</div>
+</div>
+
+<div className="soraServicios2">
+<div className="leftServ">
+  <h1>Sora Senior</h1>
+  <span> Transporte exclusivo para mujeres sobre 60 años🧑‍🦳</span>
+  <span> Te llevamos a donde lo necesites y si lo deseas, te acompañamos en tus quehaceres.</span>
+  <span>Queremos que nuestras madres, abuelas, tías y amigas mayores sigan juntándose con sus amigas, saliendo a tomar café, yendo a la peluquería y/o comprando sus remedios tranquilas y felices.</span>
+</div>
+<div className="rightServ">
+  <img src={soraSenior2} alt="" width='400rem' />
+</div>
+</div>
+
       </div>
 
       <div className="servicios">
         <h1>¿Qué tipos de ruta puedo tomar con Sora?</h1>
-        <div className="soraServicios">
+        <div className="soraServicio">
         <div className="leftRuta">
           <div className="ruta">
             <h3>👉 Ruta recurrente:</h3>

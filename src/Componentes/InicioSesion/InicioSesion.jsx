@@ -5,12 +5,6 @@ import jwtDecode from 'jwt-decode';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-// Función para verificar si el usuario está registrado
-const verificarUsuario = (correo, contraseña) => {
-  // Aquí puedes implementar tu lógica para verificar si el usuario está registrado en tu base de datos
-  // Devuelve true si el usuario está registrado y las credenciales son correctas, de lo contrario devuelve false
-  return true;
-};
 
 export default function InicioSesion() {
   const [input, setInput] = useState({
@@ -31,22 +25,29 @@ export default function InicioSesion() {
 
   function handleCallbackResponse(response) {
     const user = jwtDecode(response.credential);
-    console.log(user)
-
+  
     const logUser = {
       correo: user.email,
       contraseña: user.azp,
       nombre: user.name,
       foto: user.picture
     };
-
-    dispatch(registroUsuario(logUser))
-    .then(() => navigate('/perfil/viajes'))
-    .catch(error => {
-      alert('Ocurrió un error durante el inicio de sesión. Por favor, inténtalo de nuevo.');
-      console.error(error);
-    });
+  
+    dispatch(loginUsuario(logUser))
+      .then(() => navigate('/perfil/viajes'))
+      .catch(() => {
+        dispatch(registroUsuario(logUser))
+          .then(() => navigate('/perfil/viajes'))
+          .catch(error => {
+            alert(error.message);
+          });
+      });
   }
+  
+   
+
+    
+
 
   function handleChange(e) {
     e.preventDefault();

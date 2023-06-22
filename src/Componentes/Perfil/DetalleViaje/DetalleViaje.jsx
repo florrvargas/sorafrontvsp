@@ -24,9 +24,8 @@ export default function DetalleViaje() {
     const params = useParams()
     const id = params.id
     const userType = JSON.parse(localStorage.getItem('userType'))
-    
+ 
     const viaje = useSelector((state) => state.viajes);
-    console.log(viaje.codigoSeguridad)
    
     const origen = {
         lat: viaje.origenLat,
@@ -43,8 +42,16 @@ export default function DetalleViaje() {
 
   useEffect(() => {
     dispatch(obtenerViajePorId(id));
-    fetchDirections(origen, destino)
+  
   }, [dispatch, id]); 
+
+  useEffect(() => {
+    if (viaje) {
+      fetchDirections();
+    } else {
+      window.location.href = window.location.href; 
+    }
+  }, [viaje]);
   
 
   const mapRef = useRef()
@@ -78,6 +85,23 @@ export default function DetalleViaje() {
     }
   };
 
+  
+
+   function viajeTerminado() {
+    window.location.href = window.location.href; 
+    setTimeout(() => {
+      if (viaje.estado === "realizado") {
+        window.location.replace('/perfil/viaje-finalizado'); 
+      } else {
+        alert("Viaje en curso");
+      }
+    }, 1); 
+
+
+  }
+  
+  
+
   const actualizarEstadoViaje = async (id) => {
     try {
       const respuesta = await axios.put(`/viajes/viajeSolicitado/${id}`, {
@@ -93,8 +117,6 @@ export default function DetalleViaje() {
     }
   };
   
-
-
       if(!isLoaded) return <div className="containerViajes">
   <SideBar /><Loading />
   </div>
@@ -118,12 +140,14 @@ export default function DetalleViaje() {
       <div className="rightViajes form2">
       <h3 id='h3'>Código de Seguridad: </h3>
       <h1>{viaje.codigoSeguridad}</h1>
-      <button  onClick={() => actualizarEstadoViaje(id)}>Terminar viaje</button>
+    
+      <button onClick={() => actualizarEstadoViaje(id)}>Terminar viaje</button>
       </div> :
       <div className="rightViajes form2">
       <h3 id='h3'>Código de Seguridad: </h3>
       <h1>{viaje.codigoSeguridad}</h1>
-      <button  onClick={() => navigate("/perfil/viaje-finalizado")}>Continuar</button>
+     
+      <button  onClick={()=>viajeTerminado()}>Continuar</button>
       </div>
       }
       

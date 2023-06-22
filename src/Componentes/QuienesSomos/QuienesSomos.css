@@ -23,3 +23,20 @@
 .leftNos h1{
     font-size: 40px;
 }
+
+@media screen and (max-width: 768px) {
+    .rightNos img{
+        display: none;
+    }
+    .leftNos h1{
+        font-size: 30px;
+    }
+    .leftNos{
+        margin-left: 0rem;
+    }
+    .containerNosotras{
+        margin: 1rem;
+        width: 90%;
+        gap: 2rem;
+    }
+}

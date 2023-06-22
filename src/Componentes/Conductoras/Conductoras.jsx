@@ -66,6 +66,48 @@ export default function Conductoras() {
                 
             </div>
         </div>
+
+        <div className="reqCond2">
+            <div className="infoReq">
+                <div className="leftReq">
+                    <h1>¿Qué necesitas para ser parte de Sora?</h1><br/>
+                    <span> ● Ser mayor de 18 años.</span>
+                    <span> ● Puntualidad.</span>
+                    <span> ● Vehículo propio.</span>
+                    <span> ● Responder un formulario para saber si cumples con los requisitos.</span>
+                </div>
+                <div className="rigthReq">
+                        <img src={auto} alt="" width='180rem'/>
+                </div>
+            </div>
+        </div>
+        <div className="reqCond2">
+            <div className="infoReq">
+                <div className="leftReq">
+                    <h1>¿Qué te ofrecemos?</h1><br />
+                    <span> ● Comisiones mejores que la del mercado.</span>
+                    <span> ● Asistencia mecánica online en ruta.</span>
+                    <span> ● Seguridad en tu traslado.</span>
+                </div>
+                <div className="rigthReq">
+                    <img src={asistencia} alt="" width='220rem'/>
+                </div>
+            </div>
+        </div>
+        <div className="reqCond2">
+            <div className="infoReq">
+                <div className="leftReq">
+                    <h1>¿Quiénes irán contigo?</h1> <br />
+                    <span> ● MUJERES y/o integrantes de la comunidad LGBT</span>
+                    <span> ● MADRES</span>
+                    <span> ● DOGLOVERS</span>
+                </div>
+                <div className="rightReq">
+                    <img src={mujeres} alt="" width='200rem'/>
+                </div>
+                
+            </div>
+        </div>
     </div>
 
  {/*--------------------- SGDF ---------------------*/}

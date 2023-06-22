@@ -9,6 +9,11 @@
 }
 
 
+.sideBar.conductora {
+  background: linear-gradient( var(--purple3),var(--purple2),var(--purple1));
+}
+
+
 .sideBar ul li {
     border-bottom: 1px solid var(--yellow);
     padding: 15px 10px;
@@ -40,7 +45,6 @@
   flex-direction: column;
   align-items: center;
   margin-left: -2rem;
-  background: var(--purple2);
   padding-bottom: 50px;
 }
 
@@ -79,10 +83,22 @@
     transition: background-color 0.3s ease;
   }
 
-    .sideBar.open {
-   transform: translate(0) !important;
-   transition: 0.3s ease all;
-    }
+  .sideBar.open {
+  transform: translate(0) !important;
+  transition: 0.3s ease all;
+  }
+  
+  .side-nav,
+  .side-navBar,
+  .user-profile{
+    transform: translateX(-15%) ;
+  }
+  .side-nav.open,
+  .side-navBar.open,
+  .user-profile.open{
+    transform: translateX(0) ;
+    ;
+  }
 
   .sideLine.open .line:nth-child(2) {
     opacity: 0;

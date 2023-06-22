@@ -15,7 +15,6 @@ export default function SideBar() {
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem('user'));
     const userTypeData = JSON.parse(localStorage.getItem('userType'));
-
     setUser(userData);
     setUserType(userTypeData);
   }, []);
@@ -25,29 +24,27 @@ export default function SideBar() {
     await localStorage.removeItem('userType');
     setUser(null);
     setUserType(null);
-
-    navigate('/'); 
-};
-
-const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  
+    navigate('/');
   };
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
 
 
     return (
-        <div className={`sideBar ${isMenuOpen ? 'open' : ''}`}>
+        <div className={`sideBar ${isMenuOpen ? 'open' : ''} ${ userType && userType === 'conductora' ? 'conductora' : ''}`}>
 
         <nav>
             <div className={`sideLine ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>
-            <div className="line"></div>
-            <div className="line"></div>
-            <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
+                <div className="line"></div>
             </div>
 
             {!user? <p>Loading...</p>: 
-            
-
-            <div className="user-profile">
+            <div className={`user-profile ${isMenuOpen ? 'open' : ''}`}>
                 <div>
                     <img src={user.foto? user.foto: perfil} alt="admin-picture" width='100px'/>
                     <h3>{user.nombre} </h3>  
@@ -55,8 +52,7 @@ const toggleMenu = () => {
             </div>}
 
             {userType && userType === "pasajera" ?
-
-            <div className="side-nav">
+            <div className={`side-nav ${isMenuOpen ? 'open' : ''}`}>
             <ul >
                 <li className="side">
                     <a href="/perfil/viajes">
@@ -74,7 +70,7 @@ const toggleMenu = () => {
                     </a>
                 </li>
                 <li className="side">
-                    <a href="/">
+                <a onClick={handleLogout}>
                         <span >Cerrar sesión</span>
                     </a>
                 </li>
@@ -82,7 +78,7 @@ const toggleMenu = () => {
             </ul>
             </div> :
             userType && userType === "conductora" ?
-            <div className="side-navBar">
+            <div className={`side-navBar ${isMenuOpen ? 'open' : ''}`}>
             <ul >
                  <li className="side">
                     <a href='/perfil/solicitudes'>
@@ -114,9 +110,6 @@ const toggleMenu = () => {
             </div>: null
             }
         </nav>
-         
-    </div>
-
-)
-
-            }
+        </div>
+    )
+}

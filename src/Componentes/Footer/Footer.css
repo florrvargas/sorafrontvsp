@@ -5,7 +5,6 @@
     bottom: 0;
     width: 100%;
     height: 8rem;
-    
     font-size: 12px;
     background: var(--background);
 }
@@ -36,4 +35,46 @@
     flex-direction: column;
     align-items: center;
 
+}
+
+@media screen and (max-width: 768px) {
+    .containerFooter{
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    font-size: 14px;
+    background: var(--purple1);
+    }
+
+    .containerFooter p{
+        color: var(--background);
+    }
+
+    .containerFooter img{
+    margin-left: 7rem;
+    background-color: var(--background);
+
+    }
+
+    .contactoFooter,
+    .serviciosFooter,
+    .ayudaFooter{
+        gap: 0rem;
+        margin-left: 1rem;
+        align-items: flex-start;
+    }
+
+    .descargaAppFooter{
+        display: none;
+    }
+
+    .info,
+    .serv{
+        align-items: flex-start;
+        margin-left: 1rem;
+    }
+
+    .iconFooter{
+        display: none;
+    }
 }

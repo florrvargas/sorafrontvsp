@@ -99,3 +99,12 @@ margin-top: 4rem;
     display: flex;
     justify-content: center;
 }
+
+@media screen and (max-width: 768px) {
+    .cardsHome{
+        gap: 0rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

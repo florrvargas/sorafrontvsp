@@ -4,6 +4,7 @@ import Logo from '../../assets/Logo.png';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -34,9 +35,16 @@ export default function Navbar() {
       <div className="n-right">
         <ul className={`n-list n-list1 ${isMenuOpen ? 'open' : ''} `}>
           <li>
+          {user?
+            <a href="/perfil/viajes">
+              <button>Ingresar</button>
+            </a>:
             <a href="/inicio-sesion">
-                <button>Ingresar</button></a>
-          </li>
+              <button>Ingresar</button>
+            </a>
+          }         
+          </li> 
+
         </ul>
         <div className={`n-button ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>
           <div className="line"></div>

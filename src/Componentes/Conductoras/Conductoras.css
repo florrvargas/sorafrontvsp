@@ -45,6 +45,9 @@
     flex-direction: column;
     margin-left: 20rem;
 }
+.reqCond2{
+    display: none;
+}
 
 .infoReq{
     display: flex;
@@ -55,5 +58,59 @@
 .leftReq{
     display: flex;
     flex-direction: column;
+}
+
+@media screen and (max-width: 768px) {
+    .containerConductora{
+        width: 100%;
+        margin:  1rem ;
+    }
+    
+    .introCond{
+        width: 90%;
+        margin: 1rem;
+    }
+    
+    .leftCond{
+        gap: 2rem;
+    }
+    
+    .leftCond h1{
+        font-size: 35px;
+    }
+    
+    .rightCond img{
+        display: none;
+    
+    }
+    
+    .requisitosCond{
+        transform: scale(.8);
+        gap: 2rem;
+        margin-top: 0rem;
+        margin-bottom: 3rem;
+    }
+   
+    
+    .reqCond2{
+        display: flex;
+        flex-direction: column;
+        margin-left: 0rem;
+    }
+    .reqCond{
+        display: none;
+    }
+    
+    .infoReq{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-left: -1rem;
+    }
+    
+    .leftReq{
+        display: flex;
+        flex-direction: column;
+    }
 }
 

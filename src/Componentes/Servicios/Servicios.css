@@ -36,11 +36,16 @@
     border-radius: 20px;
 }
 
-.soraServicios{
+.soraServicios,
+.soraServicio{
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 4rem;
+}
+
+.soraServicios2{
+    display: none;
 }
 
 .leftServ{
@@ -69,4 +74,49 @@
     border-radius: 20px;
 }
    
-   
+@media screen and (max-width: 768px) {
+    .containerServicios{
+        margin: 1rem;
+        width: 90%;
+    }
+
+    .introServicios img{
+        display: none;
+    }
+    
+     .introServicios h1{
+        font-size: 35px;
+    }
+    
+    .soraServicios2,
+    .soraServicio{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transform: scale(.8);
+    }
+
+    .soraServicios{
+        display: none;
+    }
+
+    .servicios{
+        gap: 0rem;
+        margin-top: 4rem;
+        margin-bottom: 2rem;
+        width: 100%;
+    }
+    
+    .servicios h2{
+        font-size: 30px;
+    }
+
+    .rightServ img{
+        transform: scale(.6);
+    }
+    
+    .leftServ{
+        margin-left: 0rem;
+        width: 100%;
+    }
+}

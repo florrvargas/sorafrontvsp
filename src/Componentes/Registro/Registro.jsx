@@ -28,34 +28,30 @@ export default function Registro() {
     return password === confirmPassword;
   };
 
-  const handleRegister = async () => {
+  const handleRegister = () => {
     try {
-   
-    if (!isEmailValid(correo)) {
-      alert("El correo no es válido.")
-    }
-
-    if (!isPasswordValid(contraseña)) {
-      alert("La contraseña debe tener al menos 6 caracteres.")
-    }
-
-    if (!isConfirmPasswordValid(contraseña, confirmarContraseña)) {
-      alert("La contraseña y la confirmación de contraseña no coinciden.")
-    }
-
-    const payload = { nombre, correo, contraseña };
-    const user = dispatch(registroUsuario(payload));
-
-    if (user) {
+      if (!isEmailValid(correo)) {
+        alert("El correo no es válido.");
+        return;
+      }
+      if (!isPasswordValid(contraseña)) {
+        alert("La contraseña debe tener al menos 6 caracteres.");
+        return;
+      }
+      if (!isConfirmPasswordValid(contraseña, confirmarContraseña)) {
+        alert("La contraseña y la confirmación de contraseña no coinciden.");
+        return;
+      }
+  
+      const payload = { nombre, correo, contraseña };
+      dispatch(registroUsuario(payload));
       navigate("/perfil/viajes");
-    } else {
-      alert("No se pudo completar el registro.");
+    } catch (error) {
+      console.log(error);
+      alert(error);
     }
-  } catch (error) {
-    console.log(error);
-    alert("Ha ocurrido un error.");
-  }
-};
+  };
+  
  
   return (
     <div className='registro'>
