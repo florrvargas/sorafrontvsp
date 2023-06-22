@@ -13,6 +13,7 @@ export default function InicioSesion() {
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
   const user = JSON.parse(localStorage.getItem('user'));
   
 
@@ -45,11 +46,6 @@ export default function InicioSesion() {
           });
       });
   }
-  
-   
-
-    
-
 
   function handleChange(e) {
     e.preventDefault();
@@ -69,10 +65,15 @@ export default function InicioSesion() {
     dispatch(loginUsuario({ correo, contraseña }))
       .then(() => navigate('/perfil/viajes'))
       .catch(error => {
-        alert('Ocurrió un error durante el inicio de sesión. Por favor, inténtalo de nuevo.');
+        alert(error);
         console.error(error);
       });
   }
+
+  function handleTogglePassword() {
+    setShowPassword(prevShowPassword => !prevShowPassword);
+  }
+  
 
   if(user) navigate("/perfil/viajes")
 
@@ -92,22 +93,37 @@ export default function InicioSesion() {
             placeholder='Email'
             className='input'
           />
-          <input
-            required
-            type='password'
-            name='contraseña'
-            onChange={handleChange}
-            value={input.contraseña}
-            placeholder='Contraseña'
-            className='input'
-          />
+          <div className="pass">
+            <input
+              required
+              type={showPassword ? 'text' : 'password'}
+              name='contraseña'
+              onChange={handleChange}
+              value={input.contraseña}
+              placeholder='Contraseña'
+              className='input'
+            />
+            <button
+              className="password-toggle-btn "
+              type="button"
+              onClick={handleTogglePassword}
+            >
+              {showPassword ? (
+                <i className="fas fa-eye-slash"></i> 
+              ) : (
+                <i className="fas fa-eye"></i> 
+              )}
+            </button>
+          </div>
+
+          
           <div className='checkbox-container'></div>
           <button className='sigin-btn' onClick={handleSubmit}>
             Iniciar Sesion
           </button>
-          <a className='forget' href='#'>
+          {/* <a className='forget' href='#'>
             ¿Olvidaste tu contraseña?
-          </a>
+          </a> */}
 
           <div className='separator'>
             <hr className='line' />

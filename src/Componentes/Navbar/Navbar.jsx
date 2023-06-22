@@ -26,9 +26,9 @@ export default function Navbar() {
           <li>
             <a href="/conductoras">Conductoras</a>
           </li>
-          <li>
+          {/* <li>
             <a href="/ayuda">Ayuda</a>
-          </li>
+          </li> */}
         </ul>
       </div>
 

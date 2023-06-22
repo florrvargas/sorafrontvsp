@@ -41,6 +41,8 @@
     outline: none;
     padding: 0.7em;
     transition: .4s ease-in-out;
+    width: 18rem;
+
   }
   
   .input:hover {
@@ -64,7 +66,7 @@
     padding-right: 1em;
     border-radius: 10px;
     border: none;
-    width: 100%;
+    width: 18rem;
     background: linear-gradient(#8C4AFF, #EE9CDA);
     color: #ffffff;
     transition: .4s ease-in-out;
@@ -126,3 +128,40 @@
     display: flex;
     justify-content: center;
   }
+
+  .password-toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #777;
+    font-size: .9rem;
+    border-radius:0px 8px 8px 0px;
+    background-color: none;
+    outline: none;
+    padding: 0.6em;
+    transition: .4s ease-in-out;
+    width: max-content;
+    box-shadow: none;
+  }
+
+  .password-toggle-btn:hover{
+    background: none;
+  }
+
+ 
+
+    @media screen and (max-width:600px) {
+      .formRegistro {
+        max-width: 300px;
+      }
+      .input{
+        width: 250px;
+      }
+      .pass .input{
+        width: 250px;
+      }
+    }
+  
+
+ 
+  

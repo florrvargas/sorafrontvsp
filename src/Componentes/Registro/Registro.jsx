@@ -13,6 +13,8 @@ export default function Registro() {
   const [correo, setCorreo] = useState('');
   const [contraseña, setContraseña] = useState('');
   const [confirmarContraseña, setConfirmarContraseña] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
 
   const isEmailValid = (correo) => {
@@ -51,6 +53,11 @@ export default function Registro() {
       alert(error);
     }
   };
+
+  
+  function handleTogglePassword() {
+    setShowPassword(prevShowPassword => !prevShowPassword);
+  }
   
  
   return (
@@ -80,27 +87,49 @@ export default function Registro() {
                 className="inputt"
               />
             </label>
-            <label>
+            <label className='passw'>
               <input
                 required
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 name="contraseña"
                 onChange={(e) => setContraseña(e.target.value)}
                 value={contraseña}
                 placeholder="Contraseña"
-                className="inputt"
+                className="input"
               />
+              <button
+              className="password-toggle-btn "
+              type="button"
+              onClick={handleTogglePassword}
+            >
+              {showPassword ? (
+                <i className="fas fa-eye-slash"></i> 
+              ) : (
+                <i className="fas fa-eye"></i> 
+              )}
+            </button>
             </label>
-            <label>
+            <label className='passw'>
               <input
                 required
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 name="confirmarContraseña"
                 onChange={(e) => setConfirmarContraseña(e.target.value)}
                 value={confirmarContraseña}
                 placeholder="Confirmar contraseña"
-                className="inputt"
+                className="input"
               />
+              <button
+              className="password-toggle-btn "
+              type="button"
+              onClick={handleTogglePassword}
+            >
+              {showPassword ? (
+                <i className="fas fa-eye-slash"></i> 
+              ) : (
+                <i className="fas fa-eye"></i> 
+              )}
+            </button>
             </label>
       
         <button className="sigin-btn" onClick={handleRegister}>Registrarme</button>
