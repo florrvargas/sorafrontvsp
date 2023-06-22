@@ -86,4 +86,12 @@
     .rightViajes.form{
         padding: 1rem 2rem;
     }
+
+    .result{
+        margin-top: -14rem;
+        height: 11.9rem;
+        width: 18rem;
+        background: var(--background);
+        z-index: 1;
+    }
 }

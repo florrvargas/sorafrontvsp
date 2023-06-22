@@ -8,7 +8,7 @@ export default function Distancia({viaje, origen, destino}) {
 
     const user = JSON.parse(localStorage.getItem('user'))
     const redondeo = new Intl.NumberFormat('en-NZ', { minimumFractionDigits: 2});
-    const costo = ((viaje.distance.value/1000 ) *100)
+    const costo = parseFloat(((viaje.distance.value/1000 ) *100).toFixed(2))
  
     const viajeDB = {
       userCorreo:user.correo,

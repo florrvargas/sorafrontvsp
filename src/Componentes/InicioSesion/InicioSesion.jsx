@@ -13,6 +13,8 @@ export default function InicioSesion() {
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem('user'));
+  
 
   useEffect(() => {
     google.accounts.id.initialize({
@@ -71,6 +73,8 @@ export default function InicioSesion() {
         console.error(error);
       });
   }
+
+  if(user) navigate("/perfil/viajes")
 
   return (
     <div className='container-inicio'>
