@@ -13,7 +13,7 @@ export default function Navbar() {
   return (
     <div className={`navbar ${isMenuOpen ? 'open' : ''}`}>
       <div className="n-left">
-        <a href="/">
+        <a href="/01">
           <img src={Logo} alt="" />
         </a>
         <ul className={`n-list ${isMenuOpen ? 'open' : ''}`}>

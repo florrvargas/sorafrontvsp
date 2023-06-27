@@ -28,7 +28,7 @@ export default function InicioSesion() {
 
   function handleCallbackResponse(response) {
     const user = jwtDecode(response.credential);
-  
+  console.log(user)
     const logUser = {
       correo: user.email,
       contraseña: user.azp,

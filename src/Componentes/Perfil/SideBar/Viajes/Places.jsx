@@ -41,7 +41,7 @@ export default function Places({placeholder, setOrigen, setDestino}) {
       <div >
         <input
           placeholder={placeholder} 
-          class="input"
+          class="inputPlaces"
           value={value}
           onChange={handleInput}
           disabled={!ready}

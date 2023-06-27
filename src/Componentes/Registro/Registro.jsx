@@ -11,9 +11,12 @@ export default function Registro() {
   const dispatch = useDispatch();
   const [nombre, setNombre] = useState('');
   const [correo, setCorreo] = useState('');
-  const [contraseña, setContraseña] = useState('');
+  const [contrasena, setContraseña] = useState('');
   const [confirmarContraseña, setConfirmarContraseña] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [dni, setDni] = useState('');
+  const [fotoDni, setFotoDni] = useState(null);
+  const [genero, setGenero] = useState('');
 
   const navigate = useNavigate();
 
@@ -36,16 +39,28 @@ export default function Registro() {
         alert("El correo no es válido.");
         return;
       }
-      if (!isPasswordValid(contraseña)) {
-        alert("La contraseña debe tener al menos 6 caracteres.");
+      if (!isPasswordValid(contrasena)) {
+        alert("La contrasena debe tener al menos 6 caracteres.");
         return;
       }
-      if (!isConfirmPasswordValid(contraseña, confirmarContraseña)) {
-        alert("La contraseña y la confirmación de contraseña no coinciden.");
+      if (!isConfirmPasswordValid(contrasena, confirmarContraseña)) {
+        alert("La contrasena y la confirmación de contrasena no coinciden.");
+        return;
+      }
+      if (dni === '') {
+        alert('Por favor, ingresa tu DNI/RUT.');
+        return;
+      }
+      if (fotoDni === null) {
+        alert('Por favor, adjunta una foto de tu DNI/RUT.');
+        return;
+      }
+      if (genero === '') {
+        alert('Por favor, selecciona tu género.');
         return;
       }
   
-      const payload = { nombre, correo, contraseña };
+      const payload = { nombre, correo, contrasena, dni, fotoDni, genero };
       dispatch(registroUsuario(payload));
       navigate("/perfil/viajes");
     } catch (error) {
@@ -91,9 +106,9 @@ export default function Registro() {
               <input
                 required
                 type={showPassword ? 'text' : 'password'}
-                name="contraseña"
+                name="contrasena"
                 onChange={(e) => setContraseña(e.target.value)}
-                value={contraseña}
+                value={contrasena}
                 placeholder="Contraseña"
                 className="input"
               />
@@ -116,7 +131,7 @@ export default function Registro() {
                 name="confirmarContraseña"
                 onChange={(e) => setConfirmarContraseña(e.target.value)}
                 value={confirmarContraseña}
-                placeholder="Confirmar contraseña"
+                placeholder="Confirmar contrasena"
                 className="input"
               />
               <button
@@ -131,6 +146,48 @@ export default function Registro() {
               )}
             </button>
             </label>
+
+            <div className="flex">
+        <label>
+          <input  
+            required
+            type="text"
+            name="dni"
+            onChange={(e) => setDni(e.target.value)}
+            value={dni}
+            placeholder="DNI/RUT"
+            className="inputt"
+          />
+        </label>  
+      </div>
+      <div className="flex">
+        <label>
+          <input  
+            required
+            type="file"
+            name="fotoDni"
+            onChange={(e) => setFotoDni(e.target.files[0])}
+            accept="image/*"
+            className="inputt"
+          />
+        </label>  
+      </div>
+      <div className="flex">
+        <label>
+          <select
+            required
+            name="genero"
+            onChange={(e) => setGenero(e.target.value)}
+            value={genero}
+            className="inputt"
+          >
+            <option value="">Selecciona tu género</option>
+            <option value="masculino">Masculino</option>
+            <option value="femenino">Femenino</option>
+            <option value="otro">Otro</option>
+          </select>
+        </label>  
+      </div>
       
         <button className="sigin-btn" onClick={handleRegister}>Registrarme</button>
 

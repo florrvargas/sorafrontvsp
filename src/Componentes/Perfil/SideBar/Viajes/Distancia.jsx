@@ -34,7 +34,7 @@ export default function Distancia({viaje, origen, destino}) {
             <h2>COSTO: </h2>
             <h2 id='costo'>$ {viajeDB.montoTotal}</h2>
          </div> 
-         <form action="https://backsora.up.railway.app/pago" method='POST'>
+         <form action="http://localhost:3001/pago" method='POST'>
           <input type="hidden" name='montoTotal' value={parseFloat(viajeDB.montoTotal)} />
           <input type="hidden" name='userCorreo' value={viajeDB.userCorreo} />
           <input type="hidden" name='distancia' value={viajeDB.distancia} />

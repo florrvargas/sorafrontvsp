@@ -4,9 +4,25 @@ export function registroUsuario(payload) {
 
   return async function (dispatch) {
     try {
-      const response = await axios.post('/usuarios/registro', payload);
+
+      const { fotoDni, ...restoPayload } = payload
+      console.log(payload)
+
+      const formData = new FormData();
+      formData.append('fotoDni', fotoDni);
+
+      console.log(formData);
+
+      const response = await axios.post('/usuarios/registro', payload, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        params: {
+          fotoDni: formData,
+        },
+      });
       if (response.status === 200) {
-        const user = response.data.createUser;
+        const user = response.data.createUser; 
         const tipo = response.data.tipo
         localStorage.setItem('user', JSON.stringify(user));
         localStorage.setItem('userType', JSON.stringify(tipo));
