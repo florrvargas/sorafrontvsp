@@ -8,12 +8,14 @@
 }
 
 .inicio,
-.whySora{
+.whySora,
+.rutas{
     display: flex;
     flex-direction: row;
 }
 
-.whySora{
+.whySora,
+.rutas{
     margin-top: 5rem;
     margin-bottom: 2rem;
 }

@@ -2,6 +2,14 @@
     width: 100%;
     height: 100%;
 }
+.containerRutas{
+    width: 1600px;
+    height: 70vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 
 .map{
     margin-left: 200px;
@@ -9,11 +17,22 @@
     width:100%;
     height: 100%;
 }
+.mapRuta{
+    margin-left: 30px;
+    width:50%;
+    height: 100%;
+}
 
 .mapContainer{
     width: 100%;
     height: 100%;
     z-index: -1;
+}
+.mapContainerRutas{
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+ 
 }
 
 .rightViajes{
@@ -25,6 +44,19 @@
     margin: 1rem .5rem;
     position: absolute;
     z-index: 1;
+}
+.ruta{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: fit-content;
+    margin: 1rem .5rem;
+    z-index: 1;
+    
+}
+.ruta.form{
+    padding: 2rem 3rem;
+    
 }
 
 .rightViajes.form{
@@ -120,5 +152,16 @@ box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
         width: 18rem;
         background: var(--background);
         z-index: 1;
+    }
+    .containerRutas{
+        width: 375px;
+        height: 100vh;
+        flex-direction: column;
+        align-items: center;
+    }
+    .mapRuta{
+        margin-left: 0;
+        width:95%;
+        height: 100%;
     }
 }

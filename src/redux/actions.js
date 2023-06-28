@@ -43,6 +43,36 @@ export function registroUsuario(payload) {
   };
 }
 
+export function registerConductora(formData) {
+  return async (dispatch) => {
+    try {
+      
+      const response = await axios.post('/conductoras/registro', payload);
+
+      if (response.status === 200) {
+        const conductora = response.data.createConductora;
+        const tipo = response.data.tipo;
+        localStorage.setItem('conductora', JSON.stringify(conductora));
+        localStorage.setItem('userType', JSON.stringify(tipo));
+        
+        // Dispatch de la acción para guardar la conductora en el estado
+        dispatch({
+          type: "REGISTRO_CONDUCTORA",
+          payload: conductora,
+        });
+
+        return conductora;
+      } else {
+        console.log(response.data.error);
+        throw new Error(response.data.error);
+      }
+    } catch (error) {
+      throw new Error(error.response.data.error);
+    }
+  };
+}
+
+
 export function loginUsuario(payload) {
   return async function (dispatch) {
     try {

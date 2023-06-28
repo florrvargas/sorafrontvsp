@@ -6,6 +6,8 @@ import soraPet from '../../assets/SoraPet.png'
 import soraSenior from '../../assets/SoraSenior.png'
 import inicio from '../../assets/Inicio.png'
 import inicioPortada from '../../assets/InicioPortada.jpg'
+import Viajes from '../Perfil/SideBar/Viajes/Viajes';
+import Rutas from './Rutas';
 
 export default function Home() {
   return (
@@ -67,6 +69,16 @@ export default function Home() {
           </a>
         </div>
       </div>
+
+    {/* -------------------------------------------------------
+    ---------------------- CALCULAR RUTA ----------------------
+    ------------------------------------------------------- */}
+   <div className='rutas'>
+    <Rutas/>
+   </div>
     </div>
   )
 }
+
+
+

@@ -77,9 +77,9 @@ export default function Registro() {
  
   return (
     <div className='registro'>
-      <form class="formRegistro" >
-        <h1 class="title">Regístrate </h1>
-          <div class="flex">
+      <form className="formRegistro" >
+        <h1 className="title">Regístrate </h1>
+          <div className="flex">
             <label>
                 <input  
                   required
@@ -191,7 +191,7 @@ export default function Registro() {
       
         <button className="sigin-btn" onClick={handleRegister}>Registrarme</button>
 
-        <p class="signin">¿Ya tienes una cuenta? <a href="/inicio-sesion">Inicia sesión</a> </p>
+        <p className="signin">¿Ya tienes una cuenta? <a href="/inicio-sesion">Inicia sesión</a> </p>
       </form>
     </div>
   )

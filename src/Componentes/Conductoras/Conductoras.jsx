@@ -13,7 +13,7 @@ export default function Conductoras() {
         <div className="introCond">
             <div className="leftCond">
                 <h1>¿Quieres conducir con nosotras?</h1>
-                <a href="/Registro">
+                <a href="/registro-conductora">
                 <button className='button'>Regístrate para conducir </button>
                 </a>
                 </div>

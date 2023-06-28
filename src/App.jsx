@@ -19,6 +19,7 @@ import ViajesSolicitados from './Componentes/Perfil/SideBar/ViajesSolicitados/Vi
 import DetalleViaje from './Componentes/Perfil/DetalleViaje/DetalleViaje';
 import ViajePendiente from './Componentes/Perfil/ViajePendiente/ViajePendiente';
 import EncuestaFinal from './Componentes/Perfil/EncuestaFinal/EncuestaFinal';
+import RegistroConductora from './Componentes/Conductoras/RegistroConductora/RegistroConductora';
  
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route  path="/inicio-sesion" element={<><Navbar/><InicioSesion/><Footer/></>} />
           <Route  path="/registro" element={<><Navbar/><Registro/><Footer/></>} />
           <Route  path="/conductoras" element={<><Navbar/><Conductoras/><Footer/></>} />
+          <Route  path="/registro-conductora" element={<><Navbar/><RegistroConductora/><Footer/></>} />
           {/* <Route  path='/perfil' element={<RedirectPage/>} /> */}
           <Route  path='/perfil/viajes' element={<Viajes/>} />
           <Route  path='/perfil/viajes/success' element={<ViajePendiente/>} />
