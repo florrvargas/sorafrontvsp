@@ -25,7 +25,7 @@ export default function SideBar() {
     setUser(null);
     setUserType(null);
   
-    navigate('/01');
+    navigate('/');
   };
 
     const toggleMenu = () => {

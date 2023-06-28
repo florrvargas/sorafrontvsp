@@ -28,8 +28,8 @@ function App() {
       <div className="app">
         
         <Routes>
-          <Route exact path="/" element='' />
-          <Route exact path="/01" element={<><Navbar/><Home/><Footer/></>} />
+          <Route exact path="/01" element='' />
+          <Route exact path="/" element={<><Navbar/><Home/><Footer/></>} />
           <Route  path="/quienes-somos" element={<><Navbar/><QuienesSomos/><Footer/></>} />
           <Route  path="/servicios" element={<><Navbar/><Servicios/><Footer/></>} />
           <Route  path="/ayuda" element={<><Navbar/><Ayuda/><Footer/></>} />
